@@ -1,0 +1,54 @@
+name:                hs-jwk-pem
+version:             0.1.0.0
+github:              "horus/hs-jwk-pem"
+license:             PublicDomain
+author:              "Author name here"
+maintainer:          "example@example.com"
+copyright:           "2022 Author name here"
+
+extra-source-files:
+- README.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/horus/hs-jwk-pem#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- aeson
+- asn1-types
+- asn1-encoding
+- bytestring
+- cryptonite
+- http-types
+- memory
+- pem
+- text
+- wai
+- warp
+- x509
+
+library:
+  source-dirs: src
+  ghc-options:
+  - -O2
+  - -fllvm
+  - -Wall
+
+executables:
+  hs-jwk-pem-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -O2
+    - -fllvm
+    - -Wall
+    - -threaded
+    - -rtsopts
+    dependencies:
+    - hs-jwk-pem
