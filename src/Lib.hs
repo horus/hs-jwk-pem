@@ -6,6 +6,7 @@
 
 module Lib (encodePEM) where
 
+import Control.Monad (when)
 import Crypto.Number.Serialize (os2ip)
 import Crypto.PubKey.RSA qualified as RSA (PublicKey (PublicKey))
 import Data.ASN1.BinaryEncoding (DER (DER))
@@ -40,7 +41,8 @@ newtype Jwk' = Jwk' {pubkey :: PubKey}
 
 instance A.FromJSON Jwk' where
   parseJSON = withObject "JWK" $ \o -> do
-    "RSA" :: Text <- o .: "kty"
+    kty :: Text <- o .: "kty"
+    when (kty /= "RSA") $ fail $ "unsupported key type: " ++ show kty
     N n <- o .: "n"
     E e <- o .: "e"
     return $ Jwk' $ PubKeyRSA $ RSA.PublicKey (size n 1) n e
