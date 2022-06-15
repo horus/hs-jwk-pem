@@ -18,7 +18,7 @@ import Data.Aeson as A
 import Data.ByteArray.Encoding (Base (Base64URLUnpadded), convertFromBase)
 import Data.ByteString (ByteString)
 import Data.ByteString.Lazy qualified as L (ByteString)
-import Data.PEM (PEM (..), pemWriteBS)
+import Data.PEM (PEM (..), pemWriteLBS)
 import Data.Text (Text)
 import Data.Text.Encoding (encodeUtf8)
 import Data.X509 (PubKey (PubKeyRSA))
@@ -63,8 +63,8 @@ instance A.FromJSON Jwk where
     --}
     return Jwk {..}
 
-buildPEM :: Jwk -> ByteString
-buildPEM jwk = pemWriteBS $ PEM "RSA PUBLIC KEY" [] $ asn1DER (rsaPubKey jwk.n jwk.e)
+buildPEM :: Jwk -> L.ByteString
+buildPEM jwk = pemWriteLBS $ PEM "RSA PUBLIC KEY" [] $ asn1DER (rsaPubKey jwk.n jwk.e)
 
 asn1DER :: PubKey -> ByteString
 asn1DER = encodeASN1' DER . flip toASN1 []
@@ -77,5 +77,5 @@ size !n !i
   | 2 ^ (i * 8) > n = i
   | otherwise = size n (i + 1)
 
-encodePEM :: L.ByteString -> Either String ByteString
+encodePEM :: L.ByteString -> Either String L.ByteString
 encodePEM = fmap buildPEM . A.eitherDecode @Jwk
