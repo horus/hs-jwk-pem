@@ -23,10 +23,10 @@ dependencies:
 - aeson
 - asn1-types
 - asn1-encoding
+- base64-bytestring
 - bytestring
 - cryptonite
 - http-types
-- memory
 - pem
 - text
 - wai
