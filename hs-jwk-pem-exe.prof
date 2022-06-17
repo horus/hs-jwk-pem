@@ -1,0 +1,780 @@
+	Fri Jun 17 18:40 2022 Time and Allocation Profiling Report  (Final)
+
+	   hs-jwk-pem-exe +RTS -p -RTS
+
+	total time  =        0.00 secs   (0 ticks @ 1000 us, 1 processor)
+	total alloc =     235,656 bytes  (excludes profiling overheads)
+
+COST CENTRE            MODULE                          SRC                                                  %time %alloc
+
+CAF                    GHC.IO.Handle.FD                <entire-module>                                        0.0   22.1
+CAF                    GHC.IO.Encoding                 <entire-module>                                        0.0    1.1
+fmap.\.succ'           Data.Attoparsec.Internal.Types  Data/Attoparsec/Internal/Types.hs:173:11-58            0.0    1.0
+fmap.\                 Data.Attoparsec.Internal.Types  Data/Attoparsec/Internal/Types.hs:(173,7)-(174,42)     0.0    1.1
+>>=.\.succ'            Data.Attoparsec.Internal.Types  Data/Attoparsec/Internal/Types.hs:148:13-76            0.0    1.3
+>>=.\                  Data.Attoparsec.Internal.Types  Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     0.0    3.1
+putHeader              Data.ASN1.Serialize             Data/ASN1/Serialize.hs:(72,1)-(81,42)                  0.0    2.0
+putVarEncodingIntegral Data.ASN1.Internal              Data/ASN1/Internal.hs:(65,1)-(70,33)                   0.0    1.1
+bytesOfUInt.list       Data.ASN1.Internal              Data/ASN1/Internal.hs:28:11-106                        0.0   27.6
+bytesOfUInt            Data.ASN1.Internal              Data/ASN1/Internal.hs:(27,1)-(28,106)                  0.0    3.0
+peek8_32               Data.ByteString.Base64.Internal Data/ByteString/Base64/Internal.hs:44:1-36             0.0    5.0
+peek8                  Data.ByteString.Base64.Internal Data/ByteString/Base64/Internal.hs:38:1-12             0.0    2.0
+encode/fill            Data.ByteString.Base64.Internal Data/ByteString/Base64/Internal.hs:(67,59)-(75,64)     0.0    2.1
+decodeWithTable        Data.ByteString.Base64.Internal Data/ByteString/Base64/Internal.hs:(135,1)-(162,65)    0.0    3.9
+CAF                    Data.ByteString.Base64.URL      <entire-module>                                        0.0    6.1
+main.\                 Main                            app/Main.hs:17:10-36                                   0.0    1.3
+
+
+                                                                                                                                                                           individual      inherited
+COST CENTRE                                                  MODULE                            SRC                                                    no.       entries  %time %alloc   %time %alloc
+
+MAIN                                                         MAIN                              <built-in>                                             13318           0    0.0    0.3     0.0  100.0
+ CAF                                                         Data.ByteString.Base64            <entire-module>                                        22951           0    0.0    0.0     0.0    0.0
+  alphabet                                                   Data.ByteString.Base64            Data/ByteString/Base64.hs:58:1-77                      27290           1    0.0    0.0     0.0    0.0
+ CAF                                                         Data.ByteString.Base64.URL        <entire-module>                                        22950           0    0.0    6.1     0.0    6.1
+  decodeUnpadded                                             Data.ByteString.Base64.URL        Data/ByteString/Base64/URL.hs:68:1-50                  27029           1    0.0    0.0     0.0    0.0
+ CAF                                                         Data.ByteString.Base64.Internal   <entire-module>                                        22949           0    0.0    0.0     0.0    0.0
+  peek8                                                      Data.ByteString.Base64.Internal   Data/ByteString/Base64/Internal.hs:38:1-12             27295           1    0.0    0.0     0.0    0.0
+  peek8_32                                                   Data.ByteString.Base64.Internal   Data/ByteString/Base64/Internal.hs:44:1-36             27293           1    0.0    0.0     0.0    0.0
+  poke8                                                      Data.ByteString.Base64.Internal   Data/ByteString/Base64/Internal.hs:41:1-12             27035           1    0.0    0.0     0.0    0.0
+  decodeWithTable                                            Data.ByteString.Base64.Internal   Data/ByteString/Base64/Internal.hs:(135,1)-(162,65)    27034           0    0.0    0.0     0.0    0.0
+ CAF                                                         GHC.Conc.Signal                   <entire-module>                                        13432           0    0.0    0.3     0.0    0.3
+ CAF                                                         GHC.IO.Encoding                   <entire-module>                                        13413           0    0.0    1.1     0.0    1.1
+ CAF                                                         GHC.IO.Encoding.Iconv             <entire-module>                                        13411           0    0.0    0.1     0.0    0.1
+ CAF                                                         GHC.IO.Handle.FD                  <entire-module>                                        13402           0    0.0   22.1     0.0   22.1
+ CAF:$fArbitrary1KeyMap1                                     Data.Aeson.KeyMap                 <no location info>                                     20947           0    0.0    0.0     0.0    0.0
+  fromList                                                   Data.Aeson.KeyMap                 src/Data/Aeson/KeyMap.hs:238:1-30                      26933           1    0.0    0.0     0.0    0.0
+ CAF:$fArbitraryKey1                                         Data.Aeson.Key                    <no location info>                                     20976           0    0.0    0.0     0.0    0.0
+  fromString                                                 Data.Aeson.Key                    src/Data/Aeson/Key.hs:40:1-25                          26957           1    0.0    0.0     0.0    0.0
+ CAF:$fByteArrayAccessByteString_$clength                    Data.ByteArray.Types              Data/ByteArray/Types.hs:68:5-10                        22685           0    0.0    0.0     0.0    0.0
+  length                                                     Data.ByteArray.Types              Data/ByteArray/Types.hs:68:5-30                        27192           1    0.0    0.0     0.0    0.0
+ CAF:$fFromJSONE1                                            Lib                               <no location info>                                     26565           0    0.0    0.0     0.0    0.0
+  parseJSON                                                  Lib                               src/Lib.hs:(36,3)-(39,52)                              27063           0    0.0    0.0     0.0    0.0
+   withText                                                  Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(684,1)-(685,76)      27064           0    0.0    0.0     0.0    0.0
+    parseJSON.\                                              Lib                               src/Lib.hs:(37,5)-(39,52)                              27065           0    0.0    0.0     0.0    0.0
+     pure                                                    Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:319:5-43              27067           1    0.0    0.0     0.0    0.0
+     return                                                  Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:301:5-17              27066           1    0.0    0.0     0.0    0.0
+ CAF:$fFromJSONE7                                            Lib                               <no location info>                                     26563           0    0.0    0.1     0.0    0.1
+ CAF:$fFromJSONE_$cparseJSON                                 Lib                               src/Lib.hs:36:3-11                                     26568           0    0.0    0.0     0.0    0.0
+  parseJSON                                                  Lib                               src/Lib.hs:(36,3)-(39,52)                              27053           1    0.0    0.0     0.0    0.0
+ CAF:$fFromJSONE_ds2                                         Lib                               <no location info>                                     26564           0    0.0    0.0     0.0    0.1
+  parseJSON                                                  Lib                               src/Lib.hs:(36,3)-(39,52)                              27058           0    0.0    0.0     0.0    0.1
+   withText                                                  Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(684,1)-(685,76)      27059           0    0.0    0.0     0.0    0.1
+    parseJSON.\                                              Lib                               src/Lib.hs:(37,5)-(39,52)                              27060           0    0.0    0.0     0.0    0.1
+     fromString                                              Data.Text                         src/Data/Text.hs:350:5-21                              27061           0    0.0    0.1     0.0    0.1
+      intToWord8                                             Data.Text.Internal.Unsafe.Char    src/Data/Text/Internal/Unsafe/Char.hs:88:1-25          27062           0    0.0    0.0     0.0    0.0
+ CAF:$fFromJSONJwk'_$cparseJSON                              Lib                               src/Lib.hs:44:3-11                                     26591           0    0.0    0.0     0.0    0.0
+  parseJSON                                                  Lib                               src/Lib.hs:(44,3)-(49,60)                              26930           1    0.0    0.0     0.0    0.0
+ CAF:$fFromJSONN_$cparseJSON                                 Lib                               src/Lib.hs:29:3-11                                     26553           0    0.0    0.0     0.0    0.0
+  parseJSON                                                  Lib                               src/Lib.hs:(29,3)-(31,79)                              27024           1    0.0    0.0     0.0    0.0
+ CAF:$fFromJSONText0_$cparseJSON                             Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:1686:5-13             19135           0    0.0    0.0     0.0    0.0
+  parseJSON                                                  Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:1686:5-36             26974           1    0.0    0.0     0.0    0.0
+ CAF:$fIsStringKey1                                          Data.Aeson.Key                    <no location info>                                     20980           0    0.0    0.0     0.0    0.0
+  fromString                                                 Data.Aeson.Key                    src/Data/Aeson/Key.hs:80:5-27                          26956           1    0.0    0.0     0.0    0.0
+ CAF:$fIsStringText_$cfromString                             Data.Text                         src/Data/Text.hs:350:5-14                              14562           0    0.0    0.0     0.0    0.0
+  fromString                                                 Data.Text                         src/Data/Text.hs:350:5-21                              26991           1    0.0    0.0     0.0    0.0
+ CAF:$fNumPos7                                               Data.Attoparsec.Internal.Types    <no location info>                                     16103           0    0.0    0.0     0.0    0.0
+  +                                                          Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:47:38-40             26677           1    0.0    0.0     0.0    0.0
+ CAF:$fOrdKey3                                               Data.Aeson.Key                    <no location info>                                     20968           0    0.0    0.0     0.0    0.0
+  >=                                                         Data.Aeson.Key                    src/Data/Aeson/Key.hs:37:17-19                         26935           1    0.0    0.0     0.0    0.0
+ CAF:$fOrdKey7                                               Data.Aeson.Key                    <no location info>                                     20972           0    0.0    0.0     0.0    0.0
+  compare                                                    Data.Aeson.Key                    src/Data/Aeson/Key.hs:37:17-19                         26943           1    0.0    0.0     0.0    0.0
+ CAF:$fOrdPos6                                               Data.Attoparsec.Internal.Types    <no location info>                                     16113           0    0.0    0.0     0.0    0.0
+  <                                                          Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:47:27-29             26910           1    0.0    0.0     0.0    0.0
+ CAF:$fOrdText_$ccompare                                     Data.Text                         src/Data/Text.hs:335:5-11                              14591           0    0.0    0.0     0.0    0.0
+  compare                                                    Data.Text                         src/Data/Text.hs:335:5-25                              26937           1    0.0    0.0     0.0    0.0
+ CAF:asn1DER                                                 Lib                               src/Lib.hs:75:1-7                                      26577           0    0.0    0.0     0.0    0.0
+  asn1DER                                                    Lib                               src/Lib.hs:75:1-42                                     27077           1    0.0    0.0     0.0    0.0
+ CAF:asn1DER_f                                               Lib                               <no location info>                                     26576           0    0.0    0.0     0.0    0.0
+  asn1DER                                                    Lib                               src/Lib.hs:75:1-42                                     27079           0    0.0    0.0     0.0    0.0
+   encodeASN1'                                               Data.ASN1.Encoding                Data/ASN1/Encoding.hs:51:1-66                          27080           1    0.0    0.0     0.0    0.0
+ CAF:buildPEM                                                Lib                               src/Lib.hs:57:1-8                                      26579           0    0.0    0.0     0.0    0.0
+  buildPEM                                                   Lib                               src/Lib.hs:57:1-40                                     27074           1    0.0    0.0     0.0    0.0
+ CAF:buildPEM1                                               Lib                               <no location info>                                     26578           0    0.0    0.0     0.0    0.0
+  buildPEM                                                   Lib                               src/Lib.hs:57:1-40                                     27300           0    0.0    0.0     0.0    0.0
+   pemBuilder                                                Lib                               src/Lib.hs:(63,1)-(72,48)                              27301           0    0.0    0.0     0.0    0.0
+    pemBuilder.end                                           Lib                               src/Lib.hs:66:5-42                                     27302           1    0.0    0.0     0.0    0.0
+ CAF:encodePrimitiveHeader                                   Data.ASN1.Prim                    Data/ASN1/Prim.hs:99:1-21                              22887           0    0.0    0.0     0.0    0.0
+  encodePrimitiveHeader                                      Data.ASN1.Prim                    Data/ASN1/Prim.hs:99:1-42                              27126           1    0.0    0.0     0.0    0.0
+ CAF:encodeToRaw                                             Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:83:1-11                    22933           0    0.0    0.0     0.0    0.0
+  encodeToRaw                                                Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:(83,1)-(99,74)             27083           1    0.0    0.0     0.0    0.0
+ CAF:fromText1                                               Data.Aeson.Key                    <no location info>                                     20989           0    0.0    0.0     0.0    0.0
+  fromText                                                   Data.Aeson.Key                    src/Data/Aeson/Key.hs:46:1-14                          26939           1    0.0    0.0     0.0    0.0
+ CAF:go36_rXcv                                               Data.Aeson.Parser.Internal        <no location info>                                     20646           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26719           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26720           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26721           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26722           0    0.0    0.0     0.0    0.0
+      object_                                                Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26723           0    0.0    0.0     0.0    0.0
+ CAF:go37_rXcx                                               Data.Aeson.Parser.Internal        <no location info>                                     20648           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26860           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26861           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26862           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26863           0    0.0    0.0     0.0    0.0
+      object_                                                Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26864           0    0.0    0.0     0.0    0.0
+ CAF:go38_rXcB                                               Data.Aeson.Parser.Internal        <no location info>                                     20652           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26844           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26845           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26846           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26847           0    0.0    0.0     0.0    0.0
+      object_                                                Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26848           0    0.0    0.0     0.0    0.0
+ CAF:intToWord8                                              Data.Text.Internal.Unsafe.Char    src/Data/Text/Internal/Unsafe/Char.hs:88:1-10          14321           0    0.0    0.0     0.0    0.0
+  intToWord8                                                 Data.Text.Internal.Unsafe.Char    src/Data/Text/Internal/Unsafe/Char.hs:88:1-25          26960           1    0.0    0.0     0.0    0.0
+ CAF:json1                                                   Data.Aeson.Parser.Internal        <no location info>                                     20709           0    0.0    0.0     0.0    0.0
+  json                                                       Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:112:1-12             26656           1    0.0    0.0     0.0    0.0
+ CAF:json2                                                   Data.Aeson.Parser.Internal        <no location info>                                     20707           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26657           1    0.0    0.0     0.0    0.0
+ CAF:json3                                                   Data.Aeson.Parser.Internal        <no location info>                                     20704           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26658           0    0.0    0.0     0.0    0.0
+   *>                                                        Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:189:5-26             26660           1    0.0    0.0     0.0    0.0
+    >>=                                                      Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26661           1    0.0    0.0     0.0    0.0
+   >>                                                        Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:152:5-15             26659           1    0.0    0.0     0.0    0.0
+ CAF:json4                                                   Data.Aeson.Parser.Internal        <no location info>                                     20703           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26685           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26686           1    0.0    0.0     0.0    0.0
+ CAF:jsonEOF1                                                Data.Aeson.Parser.Internal        <no location info>                                     20715           0    0.0    0.0     0.0    0.0
+  jsonEOF                                                    Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:444:1-41             26645           1    0.0    0.0     0.0    0.0
+   <*                                                        Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:191:5-36             26646           1    0.0    0.0     0.0    0.0
+    >>=                                                      Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26647           1    0.0    0.0     0.0    0.0
+ CAF:jsonEOF3                                                Data.Aeson.Parser.Internal        <no location info>                                     20714           0    0.0    0.0     0.0    0.0
+  jsonEOF                                                    Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:444:1-41             26906           0    0.0    0.0     0.0    0.0
+   endOfInput                                                Data.Attoparsec.Internal          Data/Attoparsec/Internal.hs:(110,1)-(117,55)           26907           1    0.0    0.0     0.0    0.0
+ CAF:jsonEOF4                                                Data.Aeson.Parser.Internal        <no location info>                                     20713           0    0.0    0.0     0.0    0.0
+  jsonEOF                                                    Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:444:1-41             26653           0    0.0    0.0     0.0    0.0
+   <*                                                        Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:191:5-36             26654           1    0.0    0.0     0.0    0.0
+    >>=                                                      Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26655           1    0.0    0.0     0.0    0.0
+ CAF:jsonEOF_go                                              Data.Aeson.Parser.Internal        <no location info>                                     20712           0    0.0    0.0     0.0    0.0
+  jsonEOF                                                    Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:444:1-41             26875           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26876           1    0.0    0.0     0.0    0.0
+ CAF:jsonWith1                                               Data.Aeson.Parser.Internal        <no location info>                                     20202           0    0.0    0.0     0.0    0.0
+  jstring                                                    Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:324:1-32             26760           1    0.0    0.0     0.0    0.0
+   *>                                                        Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:189:5-26             26761           1    0.0    0.0     0.0    0.0
+    >>=                                                      Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26762           1    0.0    0.0     0.0    0.0
+ CAF:jsonWith3                                               Data.Aeson.Parser.Internal        <no location info>                                     20201           0    0.0    0.0     0.0    0.0
+  jstring                                                    Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:324:1-32             26768           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26769           1    0.0    0.0     0.0    0.0
+ CAF:jsonWith_p                                              Data.Aeson.Parser.Internal        <no location info>                                     20191           0    0.0    0.0     0.0    0.0
+  jstring                                                    Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:324:1-32             26765           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26766           1    0.0    0.0     0.0    0.0
+ CAF:json_go                                                 Data.Aeson.Parser.Internal        <no location info>                                     20629           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26664           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26665           1    0.0    0.0     0.0    0.0
+ CAF:k33_rXck                                                Data.Aeson.Parser.Internal        <no location info>                                     20639           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26819           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26820           0    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26821           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26822           0    0.0    0.0     0.0    0.0
+      fmap                                                   Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26823           1    0.0    0.0     0.0    0.0
+ CAF:k39_rXdz                                                Data.Aeson.Parser.Internal        <no location info>                                     20699           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26732           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26733           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26734           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26735           0    0.0    0.0     0.0    0.0
+      object_                                                Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26736           0    0.0    0.0     0.0    0.0
+ CAF:k40_rXdC                                                Data.Aeson.Parser.Internal        <no location info>                                     20701           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26700           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26701           0    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26702           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26703           0    0.0    0.0     0.0    0.0
+      object_                                                Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26704           1    0.0    0.0     0.0    0.0
+       fmap                                                  Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26705           1    0.0    0.0     0.0    0.0
+ CAF:key                                                     Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:328:1-3              20204           0    0.0    0.0     0.0    0.0
+  key                                                        Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:328:1-30             26754           1    0.0    0.0     0.0    0.0
+   fmap                                                      Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26755           1    0.0    0.0     0.0    0.0
+ CAF:lvl21_raPM                                              Lib                               <no location info>                                     26582           0    0.0    0.1     0.0    0.1
+ CAF:lvl22_raPN                                              Lib                               <no location info>                                     26583           0    0.0    0.0     0.0    0.1
+  parseJSON                                                  Lib                               src/Lib.hs:(44,3)-(49,60)                              26953           0    0.0    0.0     0.0    0.1
+   withObject                                                Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(673,1)-(674,78)      26954           0    0.0    0.0     0.0    0.1
+    parseJSON.\                                              Lib                               src/Lib.hs:(44,40)-(49,60)                             26955           0    0.0    0.0     0.0    0.1
+     fromString                                              Data.Aeson.Key                    src/Data/Aeson/Key.hs:80:5-27                          26958           0    0.0    0.0     0.0    0.1
+      fromString                                             Data.Aeson.Key                    src/Data/Aeson/Key.hs:40:1-25                          26959           0    0.0    0.1     0.0    0.1
+       intToWord8                                            Data.Text.Internal.Unsafe.Char    src/Data/Text/Internal/Unsafe/Char.hs:88:1-25          26961           0    0.0    0.0     0.0    0.0
+ CAF:lvl23_raPO                                              Lib                               <no location info>                                     26584           0    0.0    0.0     0.0    0.0
+  parseJSON                                                  Lib                               src/Lib.hs:(44,3)-(49,60)                              26995           0    0.0    0.0     0.0    0.0
+   withObject                                                Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(673,1)-(674,78)      26996           0    0.0    0.0     0.0    0.0
+    parseJSON.\                                              Lib                               src/Lib.hs:(44,40)-(49,60)                             26997           0    0.0    0.0     0.0    0.0
+     >>=                                                     Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:(298,5)-(299,65)      26998           0    0.0    0.0     0.0    0.0
+      >>=.\                                                  Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:(298,39)-(299,65)     26999           0    0.0    0.0     0.0    0.0
+       >>=.\.ks'                                             Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:298:43-76             27000           0    0.0    0.0     0.0    0.0
+        pure                                                 Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:319:5-43              27001           1    0.0    0.0     0.0    0.0
+ CAF:lvl244_rXca                                             Data.Aeson.Parser.Internal        <no location info>                                     20630           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26840           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26841           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26842           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26843           0    0.0    0.0     0.0    0.0
+ CAF:lvl248_rXco                                             Data.Aeson.Parser.Internal        <no location info>                                     20641           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26810           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26811           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26812           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26813           0    0.0    0.0     0.0    0.0
+      *>                                                     Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:189:5-26             26814           1    0.0    0.0     0.0    0.0
+ CAF:lvl25_raPQ                                              Lib                               <no location info>                                     26585           0    0.0    0.1     0.0    0.1
+ CAF:lvl26_raPR                                              Lib                               <no location info>                                     26586           0    0.0    0.0     0.0    0.1
+  parseJSON                                                  Lib                               src/Lib.hs:(44,3)-(49,60)                              26985           0    0.0    0.0     0.0    0.1
+   withObject                                                Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(673,1)-(674,78)      26986           0    0.0    0.0     0.0    0.1
+    parseJSON.\                                              Lib                               src/Lib.hs:(44,40)-(49,60)                             26987           0    0.0    0.0     0.0    0.1
+     >>=                                                     Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:(298,5)-(299,65)      26988           0    0.0    0.0     0.0    0.1
+      >>=.\                                                  Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:(298,39)-(299,65)     26989           0    0.0    0.0     0.0    0.1
+       >>=.\.ks'                                             Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:298:43-76             26990           0    0.0    0.0     0.0    0.1
+        fromString                                           Data.Text                         src/Data/Text.hs:350:5-21                              26992           0    0.0    0.1     0.0    0.1
+         intToWord8                                          Data.Text.Internal.Unsafe.Char    src/Data/Text/Internal/Unsafe/Char.hs:88:1-25          26993           0    0.0    0.0     0.0    0.0
+ CAF:lvl272_rXdy                                             Data.Aeson.Parser.Internal        <no location info>                                     20698           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26737           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26738           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26739           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26740           0    0.0    0.0     0.0    0.0
+      object_                                                Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26741           0    0.0    0.0     0.0    0.0
+ CAF:lvl275_rXdF                                             Data.Aeson.Parser.Internal        <no location info>                                     20702           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26688           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26689           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26690           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26691           0    0.0    0.0     0.0    0.0
+      *>                                                     Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:189:5-26             26692           1    0.0    0.0     0.0    0.0
+ CAF:lvl28_raPT                                              Lib                               <no location info>                                     26587           0    0.0    0.0     0.0    0.0
+ CAF:lvl29_raPU                                              Lib                               <no location info>                                     26588           0    0.0    0.0     0.0    0.0
+  parseJSON                                                  Lib                               src/Lib.hs:(44,3)-(49,60)                              27006           0    0.0    0.0     0.0    0.0
+   withObject                                                Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(673,1)-(674,78)      27007           0    0.0    0.0     0.0    0.0
+    parseJSON.\                                              Lib                               src/Lib.hs:(44,40)-(49,60)                             27008           0    0.0    0.0     0.0    0.0
+     >>=                                                     Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:(298,5)-(299,65)      27009           0    0.0    0.0     0.0    0.0
+      >>=.\                                                  Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:(298,39)-(299,65)     27010           0    0.0    0.0     0.0    0.0
+       >>=.\.ks'                                             Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:298:43-76             27011           0    0.0    0.0     0.0    0.0
+        fromString                                           Data.Aeson.Key                    src/Data/Aeson/Key.hs:80:5-27                          27012           0    0.0    0.0     0.0    0.0
+         fromString                                          Data.Aeson.Key                    src/Data/Aeson/Key.hs:40:1-25                          27013           0    0.0    0.0     0.0    0.0
+          intToWord8                                         Data.Text.Internal.Unsafe.Char    src/Data/Text/Internal/Unsafe/Char.hs:88:1-25          27014           0    0.0    0.0     0.0    0.0
+ CAF:lvl31_raPW                                              Lib                               <no location info>                                     26589           0    0.0    0.0     0.0    0.0
+ CAF:lvl32_raPX                                              Lib                               <no location info>                                     26590           0    0.0    0.0     0.0    0.0
+  parseJSON                                                  Lib                               src/Lib.hs:(44,3)-(49,60)                              27044           0    0.0    0.0     0.0    0.0
+   withObject                                                Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(673,1)-(674,78)      27045           0    0.0    0.0     0.0    0.0
+    parseJSON.\                                              Lib                               src/Lib.hs:(44,40)-(49,60)                             27046           0    0.0    0.0     0.0    0.0
+     >>=                                                     Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:(298,5)-(299,65)      27047           0    0.0    0.0     0.0    0.0
+      >>=.\                                                  Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:(298,39)-(299,65)     27048           0    0.0    0.0     0.0    0.0
+       >>=.\.ks'                                             Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:298:43-76             27049           0    0.0    0.0     0.0    0.0
+        fromString                                           Data.Aeson.Key                    src/Data/Aeson/Key.hs:80:5-27                          27050           0    0.0    0.0     0.0    0.0
+         fromString                                          Data.Aeson.Key                    src/Data/Aeson/Key.hs:40:1-25                          27051           0    0.0    0.0     0.0    0.0
+          intToWord8                                         Data.Text.Internal.Unsafe.Char    src/Data/Text/Internal/Unsafe/Char.hs:88:1-25          27052           0    0.0    0.0     0.0    0.0
+ CAF:lvl62_rX3t                                              Data.Aeson.Parser.Internal        <no location info>                                     20200           0    0.0    0.0     0.0    0.0
+  jstring                                                    Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:324:1-32             26785           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26786           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26787           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26788           0    0.0    0.0     0.0    0.0
+ CAF:m135_rXc9                                               Data.Aeson.Parser.Internal        <no location info>                                     20628           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26666           0    0.0    0.0     0.0    0.0
+   fmap                                                      Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26667           1    0.0    0.0     0.0    0.0
+ CAF:m136_rXcf                                               Data.Aeson.Parser.Internal        <no location info>                                     20635           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26833           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26834           0    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26835           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26836           0    0.0    0.0     0.0    0.0
+      fmap                                                   Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26837           1    0.0    0.0     0.0    0.0
+ CAF:m138_rXci                                               Data.Aeson.Parser.Internal        <no location info>                                     20637           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26829           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26830           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26831           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26832           0    0.0    0.0     0.0    0.0
+ CAF:m139_rXcl                                               Data.Aeson.Parser.Internal        <no location info>                                     20640           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26815           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26816           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26817           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26818           0    0.0    0.0     0.0    0.0
+ CAF:m141_rXcu                                               Data.Aeson.Parser.Internal        <no location info>                                     20645           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26724           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26725           0    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26726           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26727           0    0.0    0.0     0.0    0.0
+      object_                                                Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26728           0    0.0    0.0     0.0    0.0
+       fmap                                                  Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26729           1    0.0    0.0     0.0    0.0
+ CAF:m142_rXcw                                               Data.Aeson.Parser.Internal        <no location info>                                     20647           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26865           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26866           0    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26867           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26868           0    0.0    0.0     0.0    0.0
+      fmap                                                   Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26870           1    0.0    0.0     0.0    0.0
+      object_                                                Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26869           0    0.0    0.0     0.0    0.0
+ CAF:m143_rXcA                                               Data.Aeson.Parser.Internal        <no location info>                                     20651           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26849           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26850           0    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26851           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26852           0    0.0    0.0     0.0    0.0
+      fmap                                                   Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26854           1    0.0    0.0     0.0    0.0
+      object_                                                Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26853           0    0.0    0.0     0.0    0.0
+ CAF:m144_rXcF                                               Data.Aeson.Parser.Internal        <no location info>                                     20656           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26742           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26743           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26744           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26745           0    0.0    0.0     0.0    0.0
+      object_                                                Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26746           0    0.0    0.0     0.0    0.0
+       <*                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:191:5-36             26747           1    0.0    0.0     0.0    0.0
+ CAF:m145_rXcG                                               Data.Aeson.Parser.Internal        <no location info>                                     20657           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26694           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26695           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26696           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26697           0    0.0    0.0     0.0    0.0
+ CAF:m155_rXdG                                               Data.Aeson.Parser.Internal        <no location info>                                     20705           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26804           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26805           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26806           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26807           0    0.0    0.0     0.0    0.0
+      <*                                                     Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:191:5-36             26809           1    0.0    0.0     0.0    0.0
+      object_                                                Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26808           0    0.0    0.0     0.0    0.0
+ CAF:m157_rXdK                                               Data.Aeson.Parser.Internal        <no location info>                                     20711           0    0.0    0.0     0.0    0.0
+  jsonEOF                                                    Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:444:1-41             26880           0    0.0    0.0     0.0    0.0
+   fmap                                                      Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26881           1    0.0    0.0     0.0    0.0
+ CAF:m5_rX3l                                                 Data.Aeson.Parser.Internal        <no location info>                                     20193           0    0.0    0.0     0.0    0.0
+  jstring                                                    Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:324:1-32             26773           0    0.0    0.0     0.0    0.0
+   fmap                                                      Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26774           1    0.0    0.0     0.0    0.0
+ CAF:m7_rX3o                                                 Data.Aeson.Parser.Internal        <no location info>                                     20195           0    0.0    0.0     0.0    0.0
+  jstring                                                    Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:324:1-32             26771           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26772           1    0.0    0.0     0.0    0.0
+ CAF:main1                                                   Main                              <no location info>                                     26634           0    0.0    0.0     0.0    0.0
+  main                                                       Main                              app/Main.hs:(14,1)-(17,36)                             26636           1    0.0    0.0     0.0    0.0
+ CAF:outputPEM1                                              Lib                               <no location info>                                     26604           0    0.0    0.0     0.0    0.0
+  outputPEM                                                  Lib                               src/Lib.hs:(52,1)-(54,58)                              26639           1    0.0    0.0     0.0    0.0
+ CAF:outputPEM_eitherPEM                                     Lib                               src/Lib.hs:54:5-13                                     26603           0    0.0    0.0     0.0    0.0
+  outputPEM                                                  Lib                               src/Lib.hs:(52,1)-(54,58)                              26641           0    0.0    0.0     0.0    0.0
+   outputPEM.eitherPEM                                       Lib                               src/Lib.hs:54:5-58                                     26642           1    0.0    0.0     0.0    0.0
+ CAF:outputPEM_g                                             Lib                               <no location info>                                     26596           0    0.0    0.0     0.0    0.0
+  outputPEM                                                  Lib                               src/Lib.hs:(52,1)-(54,58)                              26925           0    0.0    0.0     0.0    0.0
+   outputPEM.eitherPEM                                       Lib                               src/Lib.hs:54:5-58                                     26926           0    0.0    0.0     0.0    0.0
+    ifromJSON                                                Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:786:1-28              26927           1    0.0    0.0     0.0    0.0
+ CAF:p27_rXcj                                                Data.Aeson.Parser.Internal        <no location info>                                     20638           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26824           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26825           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26826           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26827           0    0.0    0.0     0.0    0.0
+ CAF:p28_rXcz                                                Data.Aeson.Parser.Internal        <no location info>                                     20650           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26855           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26856           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26857           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26858           0    0.0    0.0     0.0    0.0
+      object_                                                Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26859           0    0.0    0.0     0.0    0.0
+ CAF:p29_rXcD                                                Data.Aeson.Parser.Internal        <no location info>                                     20654           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26799           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26800           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26801           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26802           0    0.0    0.0     0.0    0.0
+      object_                                                Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26803           0    0.0    0.0     0.0    0.0
+ CAF:p36_rXdA                                                Data.Aeson.Parser.Internal        <no location info>                                     20700           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26710           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26711           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26712           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26713           0    0.0    0.0     0.0    0.0
+      object_                                                Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26714           0    0.0    0.0     0.0    0.0
+       *>                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:189:5-26             26716           1    0.0    0.0     0.0    0.0
+       >>                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:152:5-15             26715           1    0.0    0.0     0.0    0.0
+ CAF:unsafeDoIO                                              Crypto.Internal.Compat            Crypto/Internal/Compat.hs:29:1-10                      22963           0    0.0    0.0     0.0    0.0
+  unsafeDoIO                                                 Crypto.Internal.Compat            Crypto/Internal/Compat.hs:29:1-35                      27187           1    0.0    0.0     0.0    0.0
+ CAF:x11_rXcE                                                Data.Aeson.Parser.Internal        <no location info>                                     20655           0    0.0    0.0     0.0    0.0
+  value                                                      Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26748           0    0.0    0.0     0.0    0.0
+   >>=                                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26749           1    0.0    0.0     0.0    0.0
+    >>=.\                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26750           0    0.0    0.0     0.0    0.0
+     >>=.\.succ'                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26751           0    0.0    0.0     0.0    0.0
+      object_                                                Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26752           0    0.0    0.0     0.0    0.0
+       <*                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:191:5-36             26753           1    0.0    0.0     0.0    0.0
+ main                                                        Main                              app/Main.hs:(14,1)-(17,36)                             26637           0    0.0    0.1     0.0   68.9
+  main.\                                                     Main                              app/Main.hs:17:10-36                                   26638           1    0.0    1.3     0.0   68.9
+   outputPEM                                                 Lib                               src/Lib.hs:(52,1)-(54,58)                              26640           0    0.0    0.3     0.0   67.6
+    outputPEM.eitherPEM                                      Lib                               src/Lib.hs:54:5-58                                     26643           0    0.0    0.0     0.0   67.2
+     buffer                                                  Data.Attoparsec.ByteString.Buffer internal/Data/Attoparsec/ByteString/Buffer.hs:86:1-59  26675           1    0.0    0.0     0.0    0.0
+      buffer.\                                               Data.Attoparsec.ByteString.Buffer internal/Data/Attoparsec/ByteString/Buffer.hs:86:40-59 26676           1    0.0    0.0     0.0    0.0
+     runParser                                               Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:111:7-15             26644           1    0.0    0.0     0.0    0.0
+     buildPEM                                                Lib                               src/Lib.hs:57:1-40                                     27075           0    0.0    0.0     0.0   53.3
+      pemBuilder                                             Lib                               src/Lib.hs:(63,1)-(72,48)                              27076           1    0.0    0.1     0.0   10.8
+       pemBuilder.splitBuild                                 Lib                               src/Lib.hs:(68,5)-(72,48)                              27282           7    0.0    0.6     0.0   10.8
+        pemBuilder.base64                                    Lib                               src/Lib.hs:67:5-63                                     27286           7    0.0    0.5     0.0   10.2
+         encode                                              Data.ByteString.Base64            Data/ByteString/Base64.hs:37:1-61                      27288           7    0.0    0.1     0.0    9.6
+          encodeWith                                         Data.ByteString.Base64.Internal   Data/ByteString/Base64/Internal.hs:(52,1)-(110,68)     27291           7    0.0    0.5     0.0    9.6
+           encode/fill                                       Data.ByteString.Base64.Internal   Data/ByteString/Base64/Internal.hs:(67,59)-(75,64)     27292          98    0.0    2.1     0.0    9.1
+            peek8_32                                         Data.ByteString.Base64.Internal   Data/ByteString/Base64/Internal.hs:44:1-36             27294           0    0.0    5.0     0.0    7.0
+             peek8                                           Data.ByteString.Base64.Internal   Data/ByteString/Base64/Internal.hs:38:1-12             27296           0    0.0    2.0     0.0    2.0
+          mkEncodeTable                                      Data.ByteString.Base64.Internal   Data/ByteString/Base64/Internal.hs:121:1-63            27289           7    0.0    0.0     0.0    0.0
+        pemBuilder.splitBuild.(...)                          Lib                               src/Lib.hs:71:15-38                                    27283           6    0.0    0.0     0.0    0.0
+        pemBuilder.splitBuild.x                              Lib                               src/Lib.hs:71:15-38                                    27287           6    0.0    0.0     0.0    0.0
+        pemBuilder.splitBuild.y                              Lib                               src/Lib.hs:71:15-38                                    27284           6    0.0    0.0     0.0    0.0
+       pemBuilder.begin                                      Lib                               src/Lib.hs:65:5-46                                     27285           1    0.0    0.0     0.0    0.0
+      pubkey                                                 Lib                               src/Lib.hs:41:22-27                                    27103           1    0.0    0.0     0.0    0.0
+      asn1DER                                                Lib                               src/Lib.hs:75:1-42                                     27078           0    0.0    0.0     0.0   42.4
+       toASN1                                                Data.X509.PublicKey               Data/X509/PublicKey.hs:181:5-38                        27086           1    0.0    0.0     0.0   34.3
+        toASN1.\                                             Data.X509.PublicKey               Data/X509/PublicKey.hs:181:23-38                       27087           1    0.0    0.2     0.0   34.3
+         encodePK                                            Data.X509.PublicKey               Data/X509/PublicKey.hs:(196,1)-(228,75)                27088           1    0.0    0.0     0.0   34.1
+          asn1Container                                      Data.X509.Internal                Data/X509/Internal.hs:27:1-48                          27089           1    0.0    0.1     0.0    0.1
+          encodePK.encodeInner                               Data.X509.PublicKey               Data/X509/PublicKey.hs:(199,5)-(228,75)                27102           1    0.0    0.2     0.0   34.0
+           asn1Container                                     Data.X509.Internal                Data/X509/Internal.hs:27:1-48                          27104           1    0.0    0.0     0.0    0.0
+           encodePK.encodeInner.bits                         Data.X509.PublicKey               Data/X509/PublicKey.hs:201:13-59                       27137           1    0.0    0.1     0.0   33.7
+            encodeASN1'                                      Data.ASN1.Encoding                Data/ASN1/Encoding.hs:51:1-66                          27138           1    0.0    0.3     0.0   33.7
+             encodeASN1                                      Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:45:5-53                    27139           1    0.0    0.0     0.0   33.4
+              toLazyByteString                               Data.ASN1.BinaryEncoding.Writer   Data/ASN1/BinaryEncoding/Writer.hs:(27,1)-(39,42)      27145           1    0.0    0.1     0.0    1.3
+               toLazyByteString.loop                         Data.ASN1.BinaryEncoding.Writer   Data/ASN1/BinaryEncoding/Writer.hs:(28,11)-(34,48)     27146           8    0.0    0.3     0.0    1.2
+                toLazyByteString.toBs                        Data.ASN1.BinaryEncoding.Writer   Data/ASN1/BinaryEncoding/Writer.hs:(36,11)-(39,42)     27204           6    0.0    0.0     0.0    0.9
+                 putHeader                                   Data.ASN1.Serialize               Data/ASN1/Serialize.hs:(72,1)-(81,42)                  27205           3    0.0    0.4     0.0    0.9
+                  putHeader.cli                              Data.ASN1.Serialize               Data/ASN1/Serialize.hs:76:9-53                         27207           3    0.0    0.0     0.0    0.0
+                   fromEnum                                  Data.ASN1.Types.Lowlevel          Data/ASN1/Types/Lowlevel.hs:27:38-41                   27208           3    0.0    0.0     0.0    0.0
+                  putHeader.lenBS                            Data.ASN1.Serialize               Data/ASN1/Serialize.hs:80:9-38                         27211           3    0.0    0.1     0.0    0.4
+                   putLength                                 Data.ASN1.Serialize               Data/ASN1/Serialize.hs:(86,1)-(95,34)                  27212           3    0.0    0.1     0.0    0.3
+                    putLength.lenbytes                       Data.ASN1.Serialize               Data/ASN1/Serialize.hs:94:13-56                        27216           2    0.0    0.0     0.0    0.0
+                    putLength.lw                             Data.ASN1.Serialize               Data/ASN1/Serialize.hs:93:13-51                        27213           2    0.0    0.0     0.0    0.2
+                     bytesOfUInt                             Data.ASN1.Internal                Data/ASN1/Internal.hs:(27,1)-(28,106)                  27214           2    0.0    0.1     0.0    0.2
+                      bytesOfUInt.list                       Data.ASN1.Internal                Data/ASN1/Internal.hs:28:11-106                        27215           4    0.0    0.1     0.0    0.1
+                  putHeader.pcval                            Data.ASN1.Serialize               Data/ASN1/Serialize.hs:77:9-50                         27209           3    0.0    0.0     0.0    0.0
+                  putHeader.tag0                             Data.ASN1.Serialize               Data/ASN1/Serialize.hs:78:9-61                         27210           3    0.0    0.0     0.0    0.0
+                  putHeader.word1                            Data.ASN1.Serialize               Data/ASN1/Serialize.hs:79:9-38                         27206           3    0.0    0.0     0.0    0.0
+                ==                                           Data.ASN1.Types.Lowlevel          Data/ASN1/Types/Lowlevel.hs:36:32-33                   27220           1    0.0    0.0     0.0    0.0
+              encodeToRaw                                    Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:(83,1)-(99,74)             27140           0    0.0    0.2     0.0   32.0
+               encodeToRaw.mkTree                            Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:(87,11)-(91,50)            27141           2    0.0    0.1     0.0    0.2
+                encodeToRaw.mkTree.(...)                     Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:89:19-42                   27153           1    0.0    0.0     0.0    0.2
+                 encodeToRaw.spanEnd                         Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:(94,11)-(99,74)            27154           3    0.0    0.1     0.0    0.1
+                  encodeToRaw.spanEnd.(...)                  Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:99:36-60                   27158           2    0.0    0.0     0.0    0.0
+                  encodeToRaw.spanEnd.ys                     Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:99:36-60                   27157           2    0.0    0.0     0.0    0.0
+                  encodeToRaw.spanEnd.zs                     Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:99:36-60                   27222           2    0.0    0.0     0.0    0.0
+                encodeToRaw.mkTree.r                         Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:89:19-42                   27221           1    0.0    0.0     0.0    0.0
+                encodeToRaw.mkTree.tree                      Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:89:19-42                   27152           1    0.0    0.0     0.0    0.0
+               encodeToRaw.writeTree                         Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:(84,11)-(85,68)            27143           1    0.0    0.0     0.0   31.6
+                encodeConstructed                            Data.ASN1.Prim                    Data/ASN1/Prim.hs:(147,1)-(154,48)                     27144           1    0.0    0.2     0.0   31.6
+                 encodeConstructed.(...)                     Data.ASN1.Prim                    Data/ASN1/Prim.hs:149:9-44                             27150           1    0.0    0.0     0.0   31.4
+                  encodeList                                 Data.ASN1.Prim                    Data/ASN1/Prim.hs:(133,1)-(144,31)                     27151           4    0.0    0.3     0.0   31.4
+                   encodeList.(...)                          Data.ASN1.Prim                    Data/ASN1/Prim.hs:143:9-33                             27160           2    0.0    0.0     0.0   31.1
+                    encodeOne                                Data.ASN1.Prim                    Data/ASN1/Prim.hs:(129,1)-(130,39)                     27161           2    0.0    0.0     0.0   31.1
+                     encodePrimitive                         Data.ASN1.Prim                    Data/ASN1/Prim.hs:(116,1)-(126,71)                     27162           2    0.0    0.2     0.0   31.1
+                      encodePrimitive.b                      Data.ASN1.Prim                    Data/ASN1/Prim.hs:117:9-33                             27169           2    0.0    0.0     0.0   30.2
+                       encodePrimitiveData                   Data.ASN1.Prim                    Data/ASN1/Prim.hs:(102,1)-(113,78)                     27170           2    0.0    0.0     0.0   30.2
+                        putInteger                           Data.ASN1.Prim                    Data/ASN1/Prim.hs:394:1-36                             27171           2    0.0    0.2     0.0   30.2
+                         bytesOfInt                          Data.ASN1.Internal                Data/ASN1/Internal.hs:(43,1)-(51,73)                   27172           2    0.0    0.0     0.0   30.1
+                          bytesOfInt.uints                   Data.ASN1.Internal                Data/ASN1/Internal.hs:48:9-35                          27174           2    0.0    0.0     0.0   30.0
+                           bytesOfUInt                       Data.ASN1.Internal                Data/ASN1/Internal.hs:(27,1)-(28,106)                  27175           2    0.0    2.7     0.0   30.0
+                            bytesOfUInt.list                 Data.ASN1.Internal                Data/ASN1/Internal.hs:28:11-106                        27176         259    0.0   27.3     0.0   27.3
+                      encodePrimitive.blen                   Data.ASN1.Prim                    Data/ASN1/Prim.hs:118:9-25                             27168           2    0.0    0.0     0.0    0.0
+                      encodePrimitive.hdr                    Data.ASN1.Prim                    Data/ASN1/Prim.hs:120:9-41                             27163           2    0.0    0.0     0.0    0.0
+                       encodePrimitiveHeader                 Data.ASN1.Prim                    Data/ASN1/Prim.hs:99:1-42                              27164           0    0.0    0.0     0.0    0.0
+                        encodeHeader                         Data.ASN1.Prim                    Data/ASN1/Prim.hs:(69,1)-(96,79)                       27165           2    0.0    0.0     0.0    0.0
+                      encodePrimitive.len                    Data.ASN1.Prim                    Data/ASN1/Prim.hs:119:9-29                             27166           2    0.0    0.0     0.0    0.0
+                       encodePrimitive.makeLength            Data.ASN1.Prim                    Data/ASN1/Prim.hs:(123,9)-(125,52)                     27167           2    0.0    0.0     0.0    0.0
+                      putHeader                              Data.ASN1.Serialize               Data/ASN1/Serialize.hs:(72,1)-(81,42)                  27177           2    0.0    0.3     0.0    0.5
+                       putHeader.cli                         Data.ASN1.Serialize               Data/ASN1/Serialize.hs:76:9-53                         27179           2    0.0    0.0     0.0    0.0
+                        fromEnum                             Data.ASN1.Types.Lowlevel          Data/ASN1/Types/Lowlevel.hs:27:38-41                   27180           2    0.0    0.0     0.0    0.0
+                       putHeader.lenBS                       Data.ASN1.Serialize               Data/ASN1/Serialize.hs:80:9-38                         27183           2    0.0    0.1     0.0    0.2
+                        putLength                            Data.ASN1.Serialize               Data/ASN1/Serialize.hs:(86,1)-(95,34)                  27184           2    0.0    0.0     0.0    0.2
+                         putLength.lenbytes                  Data.ASN1.Serialize               Data/ASN1/Serialize.hs:94:13-56                        27201           1    0.0    0.0     0.0    0.0
+                         putLength.lw                        Data.ASN1.Serialize               Data/ASN1/Serialize.hs:93:13-51                        27198           1    0.0    0.0     0.0    0.1
+                          bytesOfUInt                        Data.ASN1.Internal                Data/ASN1/Internal.hs:(27,1)-(28,106)                  27199           1    0.0    0.1     0.0    0.1
+                           bytesOfUInt.list                  Data.ASN1.Internal                Data/ASN1/Internal.hs:28:11-106                        27200           2    0.0    0.0     0.0    0.0
+                       putHeader.pcval                       Data.ASN1.Serialize               Data/ASN1/Serialize.hs:77:9-50                         27181           2    0.0    0.0     0.0    0.0
+                       putHeader.tag0                        Data.ASN1.Serialize               Data/ASN1/Serialize.hs:78:9-61                         27182           2    0.0    0.0     0.0    0.0
+                       putHeader.word1                       Data.ASN1.Serialize               Data/ASN1/Serialize.hs:79:9-38                         27178           2    0.0    0.0     0.0    0.0
+                   encodeList.(...)                          Data.ASN1.Prim                    Data/ASN1/Prim.hs:142:9-35                             27156           2    0.0    0.0     0.0    0.0
+                   encodeList.ev                             Data.ASN1.Prim                    Data/ASN1/Prim.hs:143:9-33                             27218           2    0.0    0.0     0.0    0.0
+                   encodeList.len                            Data.ASN1.Prim                    Data/ASN1/Prim.hs:143:9-33                             27159           2    0.0    0.0     0.0    0.0
+                   encodeList.lev                            Data.ASN1.Prim                    Data/ASN1/Prim.hs:142:9-35                             27219           2    0.0    0.0     0.0    0.0
+                   encodeList.llen                           Data.ASN1.Prim                    Data/ASN1/Prim.hs:142:9-35                             27155           2    0.0    0.0     0.0    0.0
+                 encodeConstructed.clen                      Data.ASN1.Prim                    Data/ASN1/Prim.hs:149:9-44                             27149           1    0.0    0.0     0.0    0.0
+                 encodeConstructed.events                    Data.ASN1.Prim                    Data/ASN1/Prim.hs:149:9-44                             27217           1    0.0    0.0     0.0    0.0
+                 encodeConstructed.h                         Data.ASN1.Prim                    Data/ASN1/Prim.hs:151:9-38                             27202           1    0.0    0.0     0.0    0.0
+                  encodeHeader                               Data.ASN1.Prim                    Data/ASN1/Prim.hs:(69,1)-(96,79)                       27203           1    0.0    0.0     0.0    0.0
+                 encodeConstructed.len                       Data.ASN1.Prim                    Data/ASN1/Prim.hs:150:9-36                             27147           1    0.0    0.0     0.0    0.0
+                  mkSmallestLength                           Data.ASN1.Prim                    Data/ASN1/Prim.hs:(157,1)-(160,77)                     27148           1    0.0    0.0     0.0    0.0
+            rsaPubToASN1                                     Data.X509.PublicKey               Data/X509/PublicKey.hs:(231,1)-(232,100)               27142           1    0.0    0.0     0.0    0.0
+             public_e                                        Crypto.PubKey.RSA.Types           Crypto/PubKey/RSA/Types.hs:44:7-14                     27173           1    0.0    0.0     0.0    0.0
+             public_n                                        Crypto.PubKey.RSA.Types           Crypto/PubKey/RSA/Types.hs:43:7-14                     27185           1    0.0    0.0     0.0    0.0
+           toBitArray                                        Data.ASN1.BitArray                Data/ASN1/BitArray.hs:(81,1)-(82,68)                   27135           1    0.0    0.0     0.0    0.0
+          encodePK.pkalg                                     Data.X509.PublicKey               Data/X509/PublicKey.hs:198:5-47                        27111           1    0.0    0.0     0.0    0.0
+           getObjectID                                       Data.X509.AlgorithmIdentifier     Data/X509/AlgorithmIdentifier.hs:(52,5)-(61,45)        27242           1    0.0    0.0     0.0    0.0
+           pubkeyToAlg                                       Data.X509.PublicKey               Data/X509/PublicKey.hs:(185,1)-(193,57)                27241           1    0.0    0.0     0.0    0.0
+       encodeASN1'                                           Data.ASN1.Encoding                Data/ASN1/Encoding.hs:51:1-66                          27081           0    0.0    0.4     0.0    8.1
+        encodeASN1                                           Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:45:5-53                    27082           1    0.0    0.0     0.0    7.7
+         toLazyByteString                                    Data.ASN1.BinaryEncoding.Writer   Data/ASN1/BinaryEncoding/Writer.hs:(27,1)-(39,42)      27092           1    0.0    0.2     0.0    2.0
+          toLazyByteString.loop                              Data.ASN1.BinaryEncoding.Writer   Data/ASN1/BinaryEncoding/Writer.hs:(28,11)-(34,48)     27093          13    0.0    0.5     0.0    1.8
+           toLazyByteString.toBs                             Data.ASN1.BinaryEncoding.Writer   Data/ASN1/BinaryEncoding/Writer.hs:(36,11)-(39,42)     27259          10    0.0    0.0     0.0    1.3
+            putHeader                                        Data.ASN1.Serialize               Data/ASN1/Serialize.hs:(72,1)-(81,42)                  27260           5    0.0    0.7     0.0    1.3
+             putHeader.cli                                   Data.ASN1.Serialize               Data/ASN1/Serialize.hs:76:9-53                         27262           5    0.0    0.0     0.0    0.0
+              fromEnum                                       Data.ASN1.Types.Lowlevel          Data/ASN1/Types/Lowlevel.hs:27:38-41                   27263           5    0.0    0.0     0.0    0.0
+             putHeader.lenBS                                 Data.ASN1.Serialize               Data/ASN1/Serialize.hs:80:9-38                         27266           5    0.0    0.2     0.0    0.5
+              putLength                                      Data.ASN1.Serialize               Data/ASN1/Serialize.hs:(86,1)-(95,34)                  27267           5    0.0    0.1     0.0    0.3
+               putLength.lenbytes                            Data.ASN1.Serialize               Data/ASN1/Serialize.hs:94:13-56                        27271           2    0.0    0.0     0.0    0.0
+               putLength.lw                                  Data.ASN1.Serialize               Data/ASN1/Serialize.hs:93:13-51                        27268           2    0.0    0.0     0.0    0.2
+                bytesOfUInt                                  Data.ASN1.Internal                Data/ASN1/Internal.hs:(27,1)-(28,106)                  27269           2    0.0    0.1     0.0    0.2
+                 bytesOfUInt.list                            Data.ASN1.Internal                Data/ASN1/Internal.hs:28:11-106                        27270           4    0.0    0.1     0.0    0.1
+             putHeader.pcval                                 Data.ASN1.Serialize               Data/ASN1/Serialize.hs:77:9-50                         27264           5    0.0    0.0     0.0    0.0
+             putHeader.tag0                                  Data.ASN1.Serialize               Data/ASN1/Serialize.hs:78:9-61                         27265           5    0.0    0.0     0.0    0.0
+             putHeader.word1                                 Data.ASN1.Serialize               Data/ASN1/Serialize.hs:79:9-38                         27261           5    0.0    0.0     0.0    0.0
+           ==                                                Data.ASN1.Types.Lowlevel          Data/ASN1/Types/Lowlevel.hs:36:32-33                   27276           2    0.0    0.0     0.0    0.0
+         encodeToRaw                                         Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:(83,1)-(99,74)             27084           0    0.0    0.3     0.0    5.7
+          encodeToRaw.mkTree                                 Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:(87,11)-(91,50)            27085           2    0.0    0.1     0.0    0.4
+           encodeToRaw.mkTree.(...)                          Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:89:19-42                   27100           1    0.0    0.0     0.0    0.4
+            encodeToRaw.spanEnd                              Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:(94,11)-(99,74)            27101           6    0.0    0.3     0.0    0.4
+             encodeToRaw.spanEnd.(...)                       Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:99:36-60                   27115           3    0.0    0.0     0.0    0.0
+             encodeToRaw.spanEnd.ys                          Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:99:36-60                   27114           3    0.0    0.0     0.0    0.0
+             encodeToRaw.spanEnd.zs                          Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:99:36-60                   27280           3    0.0    0.0     0.0    0.0
+             encodeToRaw.spanEnd.(...)                       Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:98:36-64                   27117           1    0.0    0.0     0.0    0.0
+             encodeToRaw.spanEnd.(...)                       Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:97:36-64                   27110           1    0.0    0.0     0.0    0.0
+             encodeToRaw.spanEnd.ys                          Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:98:36-64                   27116           1    0.0    0.0     0.0    0.0
+             encodeToRaw.spanEnd.ys                          Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:97:36-64                   27109           1    0.0    0.0     0.0    0.0
+             encodeToRaw.spanEnd.zs                          Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:98:36-64                   27281           1    0.0    0.0     0.0    0.0
+             encodeToRaw.spanEnd.zs                          Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:97:36-64                   27279           1    0.0    0.0     0.0    0.0
+           encodeToRaw.mkTree.r                              Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:89:19-42                   27278           1    0.0    0.0     0.0    0.0
+           encodeToRaw.mkTree.tree                           Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:89:19-42                   27099           1    0.0    0.0     0.0    0.0
+          encodeToRaw.writeTree                              Data.ASN1.BinaryEncoding          Data/ASN1/BinaryEncoding.hs:(84,11)-(85,68)            27090           1    0.0    0.0     0.0    5.0
+           encodeConstructed                                 Data.ASN1.Prim                    Data/ASN1/Prim.hs:(147,1)-(154,48)                     27091           2    0.0    0.5     0.0    5.0
+            encodeConstructed.(...)                          Data.ASN1.Prim                    Data/ASN1/Prim.hs:149:9-44                             27097           2    0.0    0.0     0.0    4.2
+             encodeList                                      Data.ASN1.Prim                    Data/ASN1/Prim.hs:(133,1)-(144,31)                     27098           7    0.0    0.6     0.0    4.2
+              encodeList.(...)                               Data.ASN1.Prim                    Data/ASN1/Prim.hs:143:9-33                             27122           3    0.0    0.0     0.0    3.3
+               encodeOne                                     Data.ASN1.Prim                    Data/ASN1/Prim.hs:(129,1)-(130,39)                     27123           3    0.0    0.0     0.0    3.3
+                encodePrimitive                              Data.ASN1.Prim                    Data/ASN1/Prim.hs:(116,1)-(126,71)                     27124           3    0.0    0.4     0.0    3.3
+                 encodePrimitive.b                           Data.ASN1.Prim                    Data/ASN1/Prim.hs:117:9-33                             27132           3    0.0    0.0     0.0    2.1
+                  encodePrimitiveData                        Data.ASN1.Prim                    Data/ASN1/Prim.hs:(102,1)-(113,78)                     27133           3    0.0    0.0     0.0    2.1
+                   putBitString                              Data.ASN1.Prim                    Data/ASN1/Prim.hs:(397,1)-(399,37)                     27134           1    0.0    0.2     0.0    0.2
+                    putBitString.i                           Data.ASN1.Prim                    Data/ASN1/Prim.hs:399:9-37                             27136           1    0.0    0.0     0.0    0.0
+                   putOID                                    Data.ASN1.Prim                    Data/ASN1/Prim.hs:(406,1)-(414,55)                     27240           1    0.0    0.0     0.0    1.9
+                    putOID.eoidclass                         Data.ASN1.Prim                    Data/ASN1/Prim.hs:408:13-55                            27248           1    0.0    0.0     0.0    0.0
+                    putOID.subeoids                          Data.ASN1.Prim                    Data/ASN1/Prim.hs:409:13-53                            27243           1    0.0    0.2     0.0    1.9
+                     putOID.encode                           Data.ASN1.Prim                    Data/ASN1/Prim.hs:(413,9)-(414,55)                     27244           5    0.0    0.3     0.0    1.6
+                      putVarEncodingIntegral                 Data.ASN1.Internal                Data/ASN1/Internal.hs:(65,1)-(70,33)                   27245           5    0.0    1.1     0.0    1.4
+                       putVarEncodingIntegral.genOctets      Data.ASN1.Internal                Data/ASN1/Internal.hs:(66,11)-(70,33)                  27246          13    0.0    0.1     0.0    0.2
+                        putVarEncodingIntegral.genOctets.out Data.ASN1.Internal                Data/ASN1/Internal.hs:68:21-83                         27247           8    0.0    0.2     0.0    0.2
+                 encodePrimitive.blen                        Data.ASN1.Prim                    Data/ASN1/Prim.hs:118:9-25                             27131           3    0.0    0.0     0.0    0.0
+                 encodePrimitive.hdr                         Data.ASN1.Prim                    Data/ASN1/Prim.hs:120:9-41                             27125           3    0.0    0.0     0.0    0.1
+                  encodePrimitiveHeader                      Data.ASN1.Prim                    Data/ASN1/Prim.hs:99:1-42                              27127           0    0.0    0.1     0.0    0.1
+                   encodeHeader                              Data.ASN1.Prim                    Data/ASN1/Prim.hs:(69,1)-(96,79)                       27128           3    0.0    0.0     0.0    0.0
+                 encodePrimitive.len                         Data.ASN1.Prim                    Data/ASN1/Prim.hs:119:9-29                             27129           3    0.0    0.0     0.0    0.0
+                  encodePrimitive.makeLength                 Data.ASN1.Prim                    Data/ASN1/Prim.hs:(123,9)-(125,52)                     27130           3    0.0    0.0     0.0    0.0
+                 putHeader                                   Data.ASN1.Serialize               Data/ASN1/Serialize.hs:(72,1)-(81,42)                  27223           3    0.0    0.4     0.0    0.7
+                  putHeader.cli                              Data.ASN1.Serialize               Data/ASN1/Serialize.hs:76:9-53                         27225           3    0.0    0.0     0.0    0.0
+                   fromEnum                                  Data.ASN1.Types.Lowlevel          Data/ASN1/Types/Lowlevel.hs:27:38-41                   27226           3    0.0    0.0     0.0    0.0
+                  putHeader.lenBS                            Data.ASN1.Serialize               Data/ASN1/Serialize.hs:80:9-38                         27229           3    0.0    0.1     0.0    0.3
+                   putLength                                 Data.ASN1.Serialize               Data/ASN1/Serialize.hs:(86,1)-(95,34)                  27230           3    0.0    0.1     0.0    0.2
+                    putLength.lenbytes                       Data.ASN1.Serialize               Data/ASN1/Serialize.hs:94:13-56                        27234           1    0.0    0.0     0.0    0.0
+                    putLength.lw                             Data.ASN1.Serialize               Data/ASN1/Serialize.hs:93:13-51                        27231           1    0.0    0.0     0.0    0.1
+                     bytesOfUInt                             Data.ASN1.Internal                Data/ASN1/Internal.hs:(27,1)-(28,106)                  27232           1    0.0    0.1     0.0    0.1
+                      bytesOfUInt.list                       Data.ASN1.Internal                Data/ASN1/Internal.hs:28:11-106                        27233           2    0.0    0.0     0.0    0.0
+                  putHeader.pcval                            Data.ASN1.Serialize               Data/ASN1/Serialize.hs:77:9-50                         27227           3    0.0    0.0     0.0    0.0
+                  putHeader.tag0                             Data.ASN1.Serialize               Data/ASN1/Serialize.hs:78:9-61                         27228           3    0.0    0.0     0.0    0.0
+                  putHeader.word1                            Data.ASN1.Serialize               Data/ASN1/Serialize.hs:79:9-38                         27224           3    0.0    0.0     0.0    0.0
+              encodeList.(...)                               Data.ASN1.Prim                    Data/ASN1/Prim.hs:142:9-35                             27120           3    0.0    0.0     0.0    0.0
+              encodeList.ev                                  Data.ASN1.Prim                    Data/ASN1/Prim.hs:143:9-33                             27274           3    0.0    0.0     0.0    0.0
+              encodeList.len                                 Data.ASN1.Prim                    Data/ASN1/Prim.hs:143:9-33                             27121           3    0.0    0.0     0.0    0.0
+              encodeList.lev                                 Data.ASN1.Prim                    Data/ASN1/Prim.hs:142:9-35                             27275           3    0.0    0.0     0.0    0.0
+              encodeList.llen                                Data.ASN1.Prim                    Data/ASN1/Prim.hs:142:9-35                             27119           3    0.0    0.0     0.0    0.0
+              encodeList.(...)                               Data.ASN1.Prim                    Data/ASN1/Prim.hs:138:9-44                             27236           1    0.0    0.0     0.0    0.0
+              encodeList.(...)                               Data.ASN1.Prim                    Data/ASN1/Prim.hs:137:9-35                             27118           1    0.0    0.0     0.0    0.0
+              encodeList.(...)                               Data.ASN1.Prim                    Data/ASN1/Prim.hs:136:9-44                             27107           1    0.0    0.0     0.0    0.1
+               getConstructedEnd                             Data.ASN1.Stream                  Data/ASN1/Stream.hs:(23,1)-(28,93)                     27108           3    0.0    0.1     0.0    0.1
+                getConstructedEnd.(...)                      Data.ASN1.Stream                  Data/ASN1/Stream.hs:28:48-80                           27113           2    0.0    0.0     0.0    0.0
+                getConstructedEnd.ys                         Data.ASN1.Stream                  Data/ASN1/Stream.hs:28:48-80                           27239           2    0.0    0.0     0.0    0.0
+                getConstructedEnd.zs                         Data.ASN1.Stream                  Data/ASN1/Stream.hs:28:48-80                           27112           2    0.0    0.0     0.0    0.0
+              encodeList.ev                                  Data.ASN1.Prim                    Data/ASN1/Prim.hs:138:9-44                             27273           1    0.0    0.0     0.0    0.0
+              encodeList.len                                 Data.ASN1.Prim                    Data/ASN1/Prim.hs:138:9-44                             27235           1    0.0    0.0     0.0    0.0
+              encodeList.lev                                 Data.ASN1.Prim                    Data/ASN1/Prim.hs:137:9-35                             27277           1    0.0    0.0     0.0    0.0
+              encodeList.llen                                Data.ASN1.Prim                    Data/ASN1/Prim.hs:137:9-35                             27105           1    0.0    0.0     0.0    0.0
+              encodeList.ys                                  Data.ASN1.Prim                    Data/ASN1/Prim.hs:136:9-44                             27238           1    0.0    0.0     0.0    0.0
+              encodeList.zs                                  Data.ASN1.Prim                    Data/ASN1/Prim.hs:136:9-44                             27106           1    0.0    0.0     0.0    0.0
+            encodeConstructed.clen                           Data.ASN1.Prim                    Data/ASN1/Prim.hs:149:9-44                             27096           2    0.0    0.0     0.0    0.0
+            encodeConstructed.events                         Data.ASN1.Prim                    Data/ASN1/Prim.hs:149:9-44                             27272           2    0.0    0.0     0.0    0.0
+            encodeConstructed.h                              Data.ASN1.Prim                    Data/ASN1/Prim.hs:151:9-38                             27249           2    0.0    0.0     0.0    0.0
+             encodeHeader                                    Data.ASN1.Prim                    Data/ASN1/Prim.hs:(69,1)-(96,79)                       27250           2    0.0    0.0     0.0    0.0
+            encodeConstructed.len                            Data.ASN1.Prim                    Data/ASN1/Prim.hs:150:9-36                             27094           2    0.0    0.0     0.0    0.0
+             mkSmallestLength                                Data.ASN1.Prim                    Data/ASN1/Prim.hs:(157,1)-(160,77)                     27095           2    0.0    0.0     0.0    0.0
+            encodeConstructed.tlen                           Data.ASN1.Prim                    Data/ASN1/Prim.hs:152:9-44                             27237           1    0.0    0.0     0.0    0.2
+             putHeader                                       Data.ASN1.Serialize               Data/ASN1/Serialize.hs:(72,1)-(81,42)                  27251           1    0.0    0.1     0.0    0.2
+              putHeader.cli                                  Data.ASN1.Serialize               Data/ASN1/Serialize.hs:76:9-53                         27253           1    0.0    0.0     0.0    0.0
+               fromEnum                                      Data.ASN1.Types.Lowlevel          Data/ASN1/Types/Lowlevel.hs:27:38-41                   27254           1    0.0    0.0     0.0    0.0
+              putHeader.lenBS                                Data.ASN1.Serialize               Data/ASN1/Serialize.hs:80:9-38                         27257           1    0.0    0.0     0.0    0.1
+               putLength                                     Data.ASN1.Serialize               Data/ASN1/Serialize.hs:(86,1)-(95,34)                  27258           1    0.0    0.0     0.0    0.0
+              putHeader.pcval                                Data.ASN1.Serialize               Data/ASN1/Serialize.hs:77:9-50                         27255           1    0.0    0.0     0.0    0.0
+              putHeader.tag0                                 Data.ASN1.Serialize               Data/ASN1/Serialize.hs:78:9-61                         27256           1    0.0    0.0     0.0    0.0
+              putHeader.word1                                Data.ASN1.Serialize               Data/ASN1/Serialize.hs:79:9-38                         27252           1    0.0    0.0     0.0    0.0
+     ifromJSON                                               Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:786:1-28              26928           0    0.0    0.0     0.0    4.9
+      runParser                                              Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:290:7-15              26929           1    0.0    0.0     0.0    0.0
+      parseJSON                                              Lib                               src/Lib.hs:(44,3)-(49,60)                              26931           0    0.0    0.0     0.0    4.9
+       withObject                                            Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(673,1)-(674,78)      26932           1    0.0    0.0     0.0    4.9
+        parseJSON.\                                          Lib                               src/Lib.hs:(44,40)-(49,60)                             26948           1    0.0    0.1     0.0    4.8
+         >>=                                                 Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:(298,5)-(299,65)      26949           4    0.0    0.0     0.0    4.6
+          >>=.\                                              Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:(298,39)-(299,65)     26950           4    0.0    0.1     0.0    4.6
+           runParser                                         Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:290:7-15              26951           4    0.0    0.0     0.0    0.0
+           >>=.\.ks'                                         Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:298:43-76             26994           3    0.0    0.0     0.0    4.6
+            runParser                                        Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:290:7-15              27004           3    0.0    0.0     0.0    0.0
+            .:                                               Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:796:1-35              27005           2    0.0    0.1     0.0    4.5
+             explicitParseField                              Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(833,1)-(835,30)      27015           2    0.0    0.1     0.0    4.5
+              <?>                                            Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:647:1-74              27021           2    0.0    0.0     0.0    0.0
+               <?>.\                                         Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:647:42-74             27022           2    0.0    0.0     0.0    0.0
+                runParser                                    Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:290:7-15              27023           2    0.0    0.0     0.0    0.0
+                parseJSON                                    Lib                               src/Lib.hs:(36,3)-(39,52)                              27068           0    0.0    0.0     0.0    0.0
+                 withText                                    Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(684,1)-(685,76)      27069           0    0.0    0.0     0.0    0.0
+                  parseJSON.\                                Lib                               src/Lib.hs:(37,5)-(39,52)                              27070           0    0.0    0.0     0.0    0.0
+                   pure                                      Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:319:5-43              27071           0    0.0    0.0     0.0    0.0
+                    pure.\                                   Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:319:40-43             27072           1    0.0    0.0     0.0    0.0
+                parseJSON                                    Lib                               src/Lib.hs:(29,3)-(31,79)                              27039           0    0.0    0.0     0.0    0.0
+                 withText                                    Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(684,1)-(685,76)      27040           0    0.0    0.0     0.0    0.0
+                  parseJSON.\                                Lib                               src/Lib.hs:(30,5)-(31,79)                              27041           0    0.0    0.0     0.0    0.0
+                   pure                                      Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:319:5-43              27042           0    0.0    0.0     0.0    0.0
+                    pure.\                                   Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:319:40-43             27043           1    0.0    0.0     0.0    0.0
+              lookup                                         Data.Aeson.KeyMap                 src/Data/Aeson/KeyMap.hs:181:1-38                      27016           2    0.0    0.1     0.0    0.1
+               unKeyMap                                      Data.Aeson.KeyMap                 src/Data/Aeson/KeyMap.hs:135:29-36                     27017           2    0.0    0.0     0.0    0.0
+               compare                                       Data.Aeson.Key                    src/Data/Aeson/Key.hs:37:17-19                         27018           0    0.0    0.0     0.0    0.0
+                compare                                      Data.Text                         src/Data/Text.hs:335:5-25                              27019           0    0.0    0.0     0.0    0.0
+                 compareText                                 Data.Text                         src/Data/Text.hs:(416,1)-(417,70)                      27020           4    0.0    0.0     0.0    0.0
+              parseJSON                                      Lib                               src/Lib.hs:(36,3)-(39,52)                              27054           0    0.0    0.0     0.0    0.0
+               withText                                      Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(684,1)-(685,76)      27055           1    0.0    0.0     0.0    0.0
+                parseJSON.\                                  Lib                               src/Lib.hs:(37,5)-(39,52)                              27056           1    0.0    0.0     0.0    0.0
+                 ==                                          Data.Text                         src/Data/Text.hs:(329,5)-(331,30)                      27057           1    0.0    0.0     0.0    0.0
+              parseJSON                                      Lib                               src/Lib.hs:(29,3)-(31,79)                              27025           0    0.0    0.0     0.0    4.3
+               withText                                      Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(684,1)-(685,76)      27026           1    0.0    0.0     0.0    4.3
+                parseJSON.\                                  Lib                               src/Lib.hs:(30,5)-(31,79)                              27027           1    0.0    0.0     0.0    4.3
+                 os2ip                                       Crypto.Number.Serialize           Crypto/Number/Serialize.hs:24:1-81                     27186           1    0.0    0.0     0.0    0.2
+                  withByteArray                              Data.ByteArray.Types              Data/ByteArray/Types.hs:69:5-103                       27188           1    0.0    0.0     0.0    0.2
+                   withByteArray.\                           Data.ByteArray.Types              Data/ByteArray/Types.hs:69:80-103                      27189           1    0.0    0.0     0.0    0.2
+                    os2ip.\                                  Crypto.Number.Serialize           Crypto/Number/Serialize.hs:24:51-80                    27190           1    0.0    0.0     0.0    0.2
+                     os2ip                                   Crypto.Number.Serialize.Internal  Crypto/Number/Serialize/Internal.hs:(67,1)-(76,62)     27194           1    0.0    0.0     0.0    0.2
+                      gmpImportInteger                       Crypto.Number.Compat              Crypto/Number/Compat.hs:(176,1)-(177,47)               27195           1    0.0    0.0     0.0    0.0
+                      onGmpUnsupported                       Crypto.Number.Compat              Crypto/Number/Compat.hs:(49,1)-(50,39)                 27196           1    0.0    0.0     0.0    0.1
+                       gmpImportInteger                      Crypto.Number.Compat              Crypto/Number/Compat.hs:(176,1)-(177,47)               27197           0    0.0    0.1     0.0    0.1
+                  os2ip.\                                    Crypto.Number.Serialize           Crypto/Number/Serialize.hs:24:51-80                    27191           0    0.0    0.0     0.0    0.0
+                   length                                    Data.ByteArray.Types              Data/ByteArray/Types.hs:68:5-30                        27193           0    0.0    0.0     0.0    0.0
+                 parseJSON.\.decoded                         Lib                               src/Lib.hs:30:9-47                                     27028           1    0.0    0.0     0.0    4.0
+                  encodeUtf8                                 Data.Text.Encoding                src/Data/Text/Encoding.hs:(510,1)-(519,36)             27031           1    0.0    0.2     0.0    0.2
+                   encodeUtf8.fp                             Data.Text.Encoding                src/Data/Text/Encoding.hs:(517,9)-(518,38)             27032           1    0.0    0.0     0.0    0.0
+                  decodeUnpadded                             Data.ByteString.Base64.URL        Data/ByteString/Base64/URL.hs:68:1-50                  27030           0    0.0    0.0     0.0    3.8
+                   decodeWithTable                           Data.ByteString.Base64.Internal   Data/ByteString/Base64/Internal.hs:(135,1)-(162,65)    27033           1    0.0    3.8     0.0    3.8
+                 pure                                        Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:319:5-43              27038           1    0.0    0.0     0.0    0.0
+                 return                                      Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:301:5-17              27037           1    0.0    0.0     0.0    0.0
+            pure                                             Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:319:5-43              27002           1    0.0    0.0     0.0    0.0
+             pure.\                                          Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:319:40-43             27003           2    0.0    0.0     0.0    0.0
+            return                                           Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:301:5-17              27073           1    0.0    0.0     0.0    0.0
+           ==                                                Data.Text                         src/Data/Text.hs:(329,5)-(331,30)                      26984           1    0.0    0.0     0.0    0.0
+           .:                                                Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:796:1-35              26969           0    0.0    0.0     0.0    0.0
+            explicitParseField                               Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(833,1)-(835,30)      26970           0    0.0    0.0     0.0    0.0
+             <?>                                             Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:647:1-74              26971           0    0.0    0.0     0.0    0.0
+              <?>.\                                          Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:647:42-74             26972           1    0.0    0.0     0.0    0.0
+               runParser                                     Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:290:7-15              26973           1    0.0    0.0     0.0    0.0
+             parseJSON                                       Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:1686:5-36             26978           0    0.0    0.0     0.0    0.0
+              withText                                       Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(684,1)-(685,76)      26979           0    0.0    0.0     0.0    0.0
+               pure                                          Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:319:5-43              26980           0    0.0    0.0     0.0    0.0
+                pure.\                                       Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:319:40-43             26981           1    0.0    0.0     0.0    0.0
+                 >>=.\.ks'                                   Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:298:43-76             26982           1    0.0    0.0     0.0    0.0
+                  runParser                                  Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:290:7-15              26983           1    0.0    0.0     0.0    0.0
+         .:                                                  Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:796:1-35              26952           1    0.0    0.0     0.0    0.1
+          explicitParseField                                 Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(833,1)-(835,30)      26962           1    0.0    0.0     0.0    0.1
+           <?>                                               Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:647:1-74              26968           1    0.0    0.0     0.0    0.0
+           lookup                                            Data.Aeson.KeyMap                 src/Data/Aeson/KeyMap.hs:181:1-38                      26963           1    0.0    0.0     0.0    0.0
+            unKeyMap                                         Data.Aeson.KeyMap                 src/Data/Aeson/KeyMap.hs:135:29-36                     26964           1    0.0    0.0     0.0    0.0
+            compare                                          Data.Aeson.Key                    src/Data/Aeson/Key.hs:37:17-19                         26965           0    0.0    0.0     0.0    0.0
+             compare                                         Data.Text                         src/Data/Text.hs:335:5-25                              26966           0    0.0    0.0     0.0    0.0
+              compareText                                    Data.Text                         src/Data/Text.hs:(416,1)-(417,70)                      26967           2    0.0    0.0     0.0    0.0
+           parseJSON                                         Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:1686:5-36             26975           0    0.0    0.0     0.0    0.0
+            withText                                         Data.Aeson.Types.FromJSON         src/Data/Aeson/Types/FromJSON.hs:(684,1)-(685,76)      26976           1    0.0    0.0     0.0    0.0
+             pure                                            Data.Aeson.Types.Internal         src/Data/Aeson/Types/Internal.hs:319:5-43              26977           1    0.0    0.0     0.0    0.0
+     jsonEOF                                                 Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:444:1-41             26648           0    0.0    0.0     0.0    9.0
+      <*                                                     Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:191:5-36             26649           0    0.0    0.0     0.0    8.9
+       >>=                                                   Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26650         106    0.0    0.0     0.0    8.9
+        >>=.\                                                Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26651         221    0.0    3.1     0.0    8.9
+         runParser                                           Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:111:7-15             26652         251    0.0    0.0     0.0    0.0
+         >>=.\.succ'                                         Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26680         208    0.0    1.0     0.0    4.4
+          runParser                                          Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:111:7-15             26681         208    0.0    0.0     0.0    0.0
+          *>.\                                               Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:189:26               26684          68    0.0    0.0     0.0    0.0
+          pure                                               Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:185:5-66             26682          63    0.0    0.0     0.0    0.3
+           pure.\                                            Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:185:50-66            26683          63    0.0    0.1     0.0    0.3
+            fmap                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26790           0    0.0    0.0     0.0    0.2
+             fmap.\                                          Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(173,7)-(174,42)     26791           0    0.0    0.0     0.0    0.2
+              fmap.\.succ'                                   Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:173:11-58            26792          20    0.0    0.2     0.0    0.2
+               key                                           Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:328:1-30             26793           0    0.0    0.0     0.0    0.0
+            object_                                          Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26871           0    0.0    0.0     0.0    0.0
+             fmap                                            Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26872           0    0.0    0.0     0.0    0.0
+              fmap.\                                         Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(173,7)-(174,42)     26873           0    0.0    0.0     0.0    0.0
+               fmap.\.succ'                                  Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:173:11-58            26874           1    0.0    0.0     0.0    0.0
+          return                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:144:5-21             26699          41    0.0    0.0     0.0    0.0
+          *>                                                 Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:189:5-26             26693          35    0.0    0.3     0.0    0.3
+          >>                                                 Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:152:5-15             26698          35    0.0    0.0     0.0    0.0
+          <*.\                                               Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:191:26-36            26794          16    0.0    0.3     0.0    0.5
+           *>                                                Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:189:5-26             26796          16    0.0    0.1     0.0    0.1
+           >>                                                Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:152:5-15             26795          16    0.0    0.0     0.0    0.0
+           pure                                              Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:185:5-66             26797          16    0.0    0.0     0.0    0.2
+            pure.\                                           Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:185:50-66            26798          15    0.0    0.2     0.0    0.2
+          fmap                                               Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26782          10    0.0    0.0     0.0    0.9
+           fmap.\                                            Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(173,7)-(174,42)     26783          29    0.0    0.5     0.0    0.9
+            runParser                                        Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:111:7-15             26784          29    0.0    0.0     0.0    0.0
+            fmap.\.succ'                                     Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:173:11-58            26838          14    0.0    0.4     0.0    0.4
+            fromPos                                          Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:46:21-27             26839          14    0.0    0.0     0.0    0.0
+            jstring                                          Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:324:1-32             26789           0    0.0    0.0     0.0    0.0
+            value                                            Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26828           0    0.0    0.0     0.0    0.0
+          unsafeDecodeASCII                                  Data.Aeson.Internal.Text          src/Data/Aeson/Internal/Text.hs:(29,1)-(30,69)         26940          10    0.0    0.0     0.0    0.5
+           unsafeDecodeASCII.\                               Data.Aeson.Internal.Text          src/Data/Aeson/Internal/Text.hs:(29,48)-(30,69)        26941          10    0.0    0.5     0.0    0.5
+          fromList                                           Data.Aeson.KeyMap                 src/Data/Aeson/KeyMap.hs:238:1-30                      26934           0    0.0    0.6     0.0    0.6
+           >=                                                Data.Aeson.Key                    src/Data/Aeson/Key.hs:37:17-19                         26936           0    0.0    0.0     0.0    0.0
+            compare                                          Data.Text                         src/Data/Text.hs:335:5-25                              26938           0    0.0    0.0     0.0    0.0
+             compareText                                     Data.Text                         src/Data/Text.hs:(416,1)-(417,70)                      26942           1    0.0    0.0     0.0    0.0
+           compare                                           Data.Aeson.Key                    src/Data/Aeson/Key.hs:37:17-19                         26945           0    0.0    0.0     0.0    0.0
+            compare                                          Data.Text                         src/Data/Text.hs:335:5-25                              26946           0    0.0    0.0     0.0    0.0
+             compareText                                     Data.Text                         src/Data/Text.hs:(416,1)-(417,70)                      26947           8    0.0    0.0     0.0    0.0
+          jstring                                            Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:324:1-32             26770           0    0.0    0.0     0.0    0.0
+          object_                                            Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:136:46-85            26706           0    0.0    0.0     0.0    0.3
+           *>                                                Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:189:5-26             26718           0    0.0    0.0     0.0    0.0
+           fmap                                              Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26707           0    0.0    0.0     0.0    0.3
+            fmap.\                                           Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(173,7)-(174,42)     26708           7    0.0    0.2     0.0    0.3
+             runParser                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:111:7-15             26709           7    0.0    0.0     0.0    0.0
+             fmap.\.succ'                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:173:11-58            26730           6    0.0    0.1     0.0    0.1
+             fromPos                                         Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:46:21-27             26731           6    0.0    0.0     0.0    0.0
+             value                                           Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26717           0    0.0    0.0     0.0    0.0
+          value                                              Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26687           0    0.0    0.0     0.0    0.0
+         fromPos                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:46:21-27             26674          53    0.0    0.0     0.0    0.0
+         +                                                   Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:47:38-40             26678           0    0.0    0.4     0.0    0.4
+         jstring                                             Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:324:1-32             26767           0    0.0    0.0     0.0    0.4
+          fmap                                               Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26775           0    0.0    0.0     0.0    0.4
+           fmap.\                                            Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(173,7)-(174,42)     26776           5    0.0    0.1     0.0    0.4
+            fmap.\.succ'                                     Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:173:11-58            26778           5    0.0    0.2     0.0    0.3
+             >>=.\.succ'                                     Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26779           5    0.0    0.1     0.0    0.1
+              runParser                                      Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:111:7-15             26780           5    0.0    0.0     0.0    0.0
+            fromPos                                          Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:46:21-27             26781           5    0.0    0.0     0.0    0.0
+            runParser                                        Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:111:7-15             26777           5    0.0    0.0     0.0    0.0
+         key                                                 Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:328:1-30             26756           0    0.0    0.0     0.0    0.1
+          fmap                                               Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26757           0    0.0    0.0     0.0    0.1
+           fmap.\                                            Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(173,7)-(174,42)     26758           5    0.0    0.1     0.0    0.1
+            runParser                                        Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:111:7-15             26759           5    0.0    0.0     0.0    0.0
+            jstring                                          Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:324:1-32             26763           0    0.0    0.0     0.0    0.0
+             *>                                              Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:189:5-26             26764           0    0.0    0.0     0.0    0.0
+         value                                               Data.Aeson.Parser.Internal        src/Data/Aeson/Parser/Internal.hs:202:1-37             26662           0    0.0    0.0     0.0    0.4
+          *>                                                 Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:189:5-26             26663           0    0.0    0.0     0.0    0.0
+          fmap                                               Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26668           0    0.0    0.0     0.0    0.4
+           fmap.\                                            Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(173,7)-(174,42)     26669           6    0.0    0.2     0.0    0.4
+            fmap.\.succ'                                     Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:173:11-58            26671           6    0.0    0.1     0.0    0.2
+             >>=.\.succ'                                     Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26672           6    0.0    0.1     0.0    0.1
+              runParser                                      Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:111:7-15             26673           6    0.0    0.0     0.0    0.0
+            fromPos                                          Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:46:21-27             26679           6    0.0    0.0     0.0    0.0
+            runParser                                        Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:111:7-15             26670           6    0.0    0.0     0.0    0.0
+      >>=                                                    Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26877           0    0.0    0.0     0.0    0.0
+       >>=.\                                                 Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26878           1    0.0    0.0     0.0    0.0
+        runParser                                            Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:111:7-15             26879           1    0.0    0.0     0.0    0.0
+      endOfInput                                             Data.Attoparsec.Internal          Data/Attoparsec/Internal.hs:(110,1)-(117,55)           26908           0    0.0    0.0     0.0    0.1
+       endOfInput.\                                          Data.Attoparsec.Internal          Data/Attoparsec/Internal.hs:(111,3)-(117,55)           26909           1    0.0    0.0     0.0    0.1
+        ==                                                   Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:128:23-24            26913           1    0.0    0.0     0.0    0.0
+        atBufferEnd                                          Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:244:3-32             26912           1    0.0    0.0     0.0    0.0
+        fmap                                                 Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26914           0    0.0    0.0     0.0    0.0
+         fmap.\                                              Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(173,7)-(174,42)     26915           0    0.0    0.0     0.0    0.0
+          fmap.\.succ'                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:173:11-58            26916           0    0.0    0.0     0.0    0.0
+           >>=                                               Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26917           0    0.0    0.0     0.0    0.0
+            >>=.\                                            Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26918           0    0.0    0.0     0.0    0.0
+             >>=.\.succ'                                     Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26919           1    0.0    0.0     0.0    0.0
+              *>.\                                           Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:189:26               26921           1    0.0    0.0     0.0    0.0
+              runParser                                      Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:111:7-15             26920           1    0.0    0.0     0.0    0.0
+              <*.\                                           Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:191:26-36            26922           0    0.0    0.0     0.0    0.0
+               pure                                          Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:185:5-66             26923           0    0.0    0.0     0.0    0.0
+                pure.\                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:185:50-66            26924           1    0.0    0.0     0.0    0.0
+      fmap                                                   Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(172,5)-(174,42)     26882           0    0.0    0.0     0.0    0.1
+       fmap.\                                                Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(173,7)-(174,42)     26883           1    0.0    0.0     0.0    0.1
+        fmap.\.succ'                                         Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:173:11-58            26885           1    0.0    0.0     0.0    0.1
+         >>=                                                 Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(147,5)-(149,44)     26886           2    0.0    0.0     0.0    0.1
+          >>=.\                                              Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:(148,9)-(149,44)     26887           2    0.0    0.0     0.0    0.1
+           >>=.\.succ'                                       Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:148:13-76            26888           4    0.0    0.0     0.0    0.0
+            runParser                                        Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:111:7-15             26889           4    0.0    0.0     0.0    0.0
+            *>.\                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:189:26               26898           1    0.0    0.0     0.0    0.0
+            <*.\                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:191:26-36            26900           1    0.0    0.0     0.0    0.0
+             *>                                              Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:189:5-26             26905           1    0.0    0.0     0.0    0.0
+             >>                                              Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:152:5-15             26904           1    0.0    0.0     0.0    0.0
+             pure                                            Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:185:5-66             26901           1    0.0    0.0     0.0    0.0
+              pure.\                                         Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:185:50-66            26902           1    0.0    0.0     0.0    0.0
+               <*                                            Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:191:5-36             26903           0    0.0    0.0     0.0    0.0
+            pure                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:185:5-66             26895           1    0.0    0.0     0.0    0.0
+             pure.\                                          Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:185:50-66            26896           1    0.0    0.0     0.0    0.0
+              <*                                             Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:191:5-36             26897           0    0.0    0.0     0.0    0.0
+            <*                                               Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:191:5-36             26899           0    0.0    0.0     0.0    0.0
+           runParser                                         Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:111:7-15             26890           2    0.0    0.0     0.0    0.0
+           ==                                                Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:128:23-24            26894           1    0.0    0.0     0.0    0.0
+           fromPos                                           Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:46:21-27             26891           1    0.0    0.0     0.0    0.0
+           +                                                 Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:47:38-40             26892           0    0.0    0.0     0.0    0.0
+        fromPos                                              Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:46:21-27             26893           1    0.0    0.0     0.0    0.0
+        runParser                                            Data.Attoparsec.Internal.Types    Data/Attoparsec/Internal/Types.hs:111:7-15             26884           1    0.0    0.0     0.0    0.0

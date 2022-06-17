@@ -42,6 +42,8 @@ packages:
 #
 extra-deps:
 - text-2.0
+- git: https://github.com/horus/base64-bytestring.git
+  commit: e2b1ce36a152a091a2c9025461f5a031d4eaf784
 
 # Override default flag values for local packages and extra-deps
 # flags: {}

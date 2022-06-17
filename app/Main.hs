@@ -2,8 +2,8 @@
 
 module Main where
 
-import Data.ByteString.Builder (stringUtf8, lazyByteString)
-import Data.ByteString.Lazy as L (getContents)
+import Data.ByteString as B (getContents)
+import Data.ByteString.Builder (lazyByteString, stringUtf8)
 import Lib
 import Network.HTTP.Types (status200, status400)
 import Network.Wai as Wai
@@ -14,7 +14,7 @@ main :: IO ()
 main =
   getArgs >>= \case
     ("web" : _) -> Warp.run 9000 app
-    _ -> L.getContents >>= pemOutput
+    _ -> B.getContents >>= outputPEM
 
 app :: Wai.Application
 app req respond =

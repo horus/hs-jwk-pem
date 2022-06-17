@@ -48,7 +48,5 @@ executables:
     - -O2
     - -fllvm
     - -Wall
-    - -threaded
-    - -rtsopts
     dependencies:
     - hs-jwk-pem
