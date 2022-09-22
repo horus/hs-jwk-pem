@@ -7,13 +7,13 @@ _Disclaimer: Low quality code for own private purpose only. Use at your own risk
 As a CLI tool:
 
 ```
-stack run < ./key.json
+$ stack run < ./key.json
 ```
 
 ...or as a tiny web service:
 
 ```
-stack run -- web
+$ stack run -- web
 ```
 
 ### Docker
@@ -21,8 +21,12 @@ stack run -- web
 For simplicity, one can build local docker images with the given Dockerfile.
 
 ```
-docker build -t hs-jwk-pem .
-docker run -it -p 8080:9000 --rm hs-jwk-pem
+$ docker build -t hs-jwk-pem .
+... ...
+$ docker image ls --format "{{.Repository}}:{{.Tag}} {{.Size}}" hs-jwk-pem
+hs-jwk-pem:latest 87.5MB
+
+$ docker run -it -p 8080:9000 --rm hs-jwk-pem
 ```
 
 ### Web API
@@ -30,22 +34,25 @@ docker run -it -p 8080:9000 --rm hs-jwk-pem
 Example request:
 
 ```
-curl \
+$ curl \
   --request POST \
   --url http://127.0.0.1:9000/ \
   --header 'Content-Type: application/json' \
   --data '{"kty": "RSA","n": "...","e": "AQAB"}'
 ```
 
-Normal output:
+Normal output (X.509):
 
 ```
------BEGIN RSA PUBLIC KEY-----
+-----BEGIN PUBLIC KEY-----
 MIIBI...
 ... ...
 ...AQAB
------END RSA PUBLIC KEY-----
+-----END PUBLIC KEY-----
 ```
+
+Note: use `http://127.0.0.1:9000/?rsa` to get a PKCS #1-encoded public key.
+
 Error output:
 ```
 Error in $.e: unrecognized exponent "AQCB"
