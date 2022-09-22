@@ -1,5 +1,6 @@
 {-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE ImportQualifiedPost #-}
+{-# LANGUAGE OverloadedRecordDot #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeApplications #-}
@@ -8,10 +9,10 @@ module Lib where
 
 import Control.Monad (when)
 import Crypto.Number.Serialize (os2ip)
-import Crypto.PubKey.RSA qualified as RSA (PublicKey (PublicKey))
+import Crypto.PubKey.RSA qualified as RSA (PublicKey (..))
 import Data.ASN1.BinaryEncoding (DER (DER))
 import Data.ASN1.Encoding (encodeASN1')
-import Data.ASN1.Types (toASN1)
+import Data.ASN1.Types (ASN1 (..), ASN1ConstructionType (Sequence), toASN1)
 import Data.Aeson as A
 import Data.ByteString qualified as S
 import Data.ByteString.Base64 as B64 (encode)
@@ -49,30 +50,40 @@ instance A.FromJSON Jwk' where
     return $ Jwk' $ PubKeyRSA $ RSA.PublicKey (size n 1) n e
 
 outputPEM :: S.ByteString -> IO ()
-outputPEM = either putStrLn (hPutBuilder stdout) . eitherPEM
+outputPEM = either putStrLn (hPutBuilder stdout) . pem
   where
-    eitherPEM = fmap buildPEM . A.eitherDecodeStrict @Jwk'
+    pem = fmap (encodeX509 . pubkey) . A.eitherDecodeStrict @Jwk'
 
-buildPEM :: Jwk' -> Builder
-buildPEM = pemBuilder . asn1DER . pubkey
-
-encodePEM :: L.ByteString -> Either String L.ByteString
-encodePEM = fmap (toLazyByteString . buildPEM) . A.eitherDecode @Jwk'
-
-pemBuilder :: S.ByteString -> Builder
-pemBuilder content = splitBuild content begin <> end
+encodeX509 :: PubKey -> Builder
+encodeX509 = pemBuilder "-----BEGIN PUBLIC KEY-----\n" "-----END PUBLIC KEY-----\n" . asn1DER
   where
-    begin = "-----BEGIN RSA PUBLIC KEY-----\n"
-    end = "-----END RSA PUBLIC KEY-----\n"
+    asn1DER = encodeASN1' DER . flip toASN1 []
+
+encodePKCS1 :: PubKey -> Builder
+encodePKCS1 = pemBuilder "-----BEGIN RSA PUBLIC KEY-----\n" "-----END RSA PUBLIC KEY-----\n" . asn1DER
+  where
+    asn1DER (PubKeyRSA rsa) =
+      encodeASN1'
+        DER
+        [ Start Sequence,
+          IntVal rsa.public_n,
+          IntVal rsa.public_e,
+          End Sequence
+        ]
+    asn1DER _ = "" -- RSA Public key ONLY
+
+encodePEMWith :: (PubKey -> Builder) -> L.ByteString -> Either String L.ByteString
+encodePEMWith enc = fmap (toLazyByteString . enc . pubkey) . A.eitherDecode @Jwk'
+
+pemBuilder :: Builder -> Builder -> S.ByteString -> Builder
+pemBuilder begin end content = split content begin <> end
+  where
     base64 line = byteString (B64.encode line) <> charUtf8 '\n'
-    splitBuild bs builder
+    split bs builder
       | S.length bs <= 48 = builder <> base64 bs
       | otherwise =
           let (x, y) = S.splitAt 48 bs
-           in splitBuild y (builder <> base64 x)
-
-asn1DER :: PubKey -> S.ByteString
-asn1DER = encodeASN1' DER . flip toASN1 []
+           in split y (builder <> base64 x)
 
 size :: Integer -> Int -> Int
 size !n !i

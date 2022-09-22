@@ -1,4 +1,5 @@
 {-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 module Main where
 
@@ -21,8 +22,11 @@ app :: Wai.Application
 app req respond =
   respond
     . either (resp status400 . stringUtf8) (resp status200 . lazyByteString)
-    . encodePEM
+    . encodePEMWith encoder
     =<< consumeRequestBodyLazy req
   where
+    encoder
+      | any ((== "rsa") . fst) $ queryString req = encodePKCS1
+      | otherwise = encodeX509
     resp status content =
       responseStream status [] $ \write flush -> write content >> flush
