@@ -30,6 +30,7 @@ dependencies:
 - pem
 - text
 - wai
+- wai-extra
 - warp
 - x509
 
