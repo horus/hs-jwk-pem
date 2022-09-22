@@ -2,6 +2,5 @@
 dist-newstyle/
 *.prof
 *.lock
-*.cabal
 test*
 *~
