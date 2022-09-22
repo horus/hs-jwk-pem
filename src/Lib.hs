@@ -3,7 +3,6 @@
 {-# LANGUAGE OverloadedRecordDot #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ScopedTypeVariables #-}
-{-# LANGUAGE TypeApplications #-}
 
 module Lib where
 
@@ -52,7 +51,7 @@ instance A.FromJSON Jwk' where
 outputPEM :: S.ByteString -> IO ()
 outputPEM = either putStrLn (hPutBuilder stdout) . pem
   where
-    pem = fmap (encodeX509 . pubkey) . A.eitherDecodeStrict @Jwk'
+    pem = fmap (encodeX509 . pubkey) . A.eitherDecodeStrict
 
 encodeX509 :: PubKey -> Builder
 encodeX509 = pemBuilder "-----BEGIN PUBLIC KEY-----\n" "-----END PUBLIC KEY-----\n" . asn1DER
@@ -73,7 +72,7 @@ encodePKCS1 = pemBuilder "-----BEGIN RSA PUBLIC KEY-----\n" "-----END RSA PUBLIC
     asn1DER _ = "" -- RSA Public key ONLY
 
 encodePEMWith :: (PubKey -> Builder) -> L.ByteString -> Either String L.ByteString
-encodePEMWith enc = fmap (toLazyByteString . enc . pubkey) . A.eitherDecode @Jwk'
+encodePEMWith enc = fmap (toLazyByteString . enc . pubkey) . A.eitherDecode
 
 pemBuilder :: Builder -> Builder -> S.ByteString -> Builder
 pemBuilder begin end content = split content begin <> end
