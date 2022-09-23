@@ -6,7 +6,7 @@ module Main where
 import Data.ByteString as B (getContents)
 import Data.ByteString.Builder (lazyByteString, stringUtf8)
 import Lib
-import Network.HTTP.Types (status200, status400)
+import Network.HTTP.Types (hContentType, status200, status400)
 import Network.Wai as Wai
 import Network.Wai.Handler.Warp as Warp (run)
 import Network.Wai.Middleware.RequestLogger (logStdout)
@@ -21,12 +21,12 @@ main =
 app :: Wai.Application
 app req respond =
   respond
-    . either (resp status400 . stringUtf8) (resp status200 . lazyByteString)
+    . either err ok
     . encodePEMWith encoder
     =<< consumeRequestBodyLazy req
   where
     encoder
       | any ((== "rsa") . fst) $ queryString req = encodePKCS1
       | otherwise = encodeX509
-    resp status content =
-      responseStream status [] $ \write flush -> write content >> flush
+    err = responseBuilder status400 [(hContentType, "text/plain")] . stringUtf8
+    ok = responseBuilder status200 [(hContentType, "application/x-pem-file")] . lazyByteString
